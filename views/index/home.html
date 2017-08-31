@@ -1,0 +1,312 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../../css/reset.css"/>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			html{font-size: 15.625vw;}
+			body {background: #e5e5e5;}
+	    	.mod-card {width: 100%;height: 100vh;overflow:hidden;}
+	    	.mod-card .card-list{width:100%;height:100%;transition:all .5s;}
+	    	.mod-card .card-list .card-item{width:100%;height:90vh;margin: 10vh 0 5vh 0;background-color:#FFFFFF;box-shadow: 0 .02rem .2rem rgba(130,130,130,0.5);position: relative;}
+	    	.mod-card .card-list .card-item:first-child{margin: 5vh 0;}
+	    	.card-item .mod-label {position: absolute;width: 100%;}
+	    	.mod-label .label-sort {position: absolute;top: .1rem;left: .1rem;}
+	    	.mod-label .label-sort span{padding: .05rem .1rem;font-size:.16rem;color:#FFFFFF;background:#fec202;border-radius:.16rem;}
+	    	.mod-label .label-source {position: absolute;top:.25rem;right: 0;width: 1.22rem;height: .46rem;line-height: .46rem;background-image: url(../../img/label.png);background-size: 100% auto;}
+	    	.mod-label .label-source p{font-size: .18rem;text-indent: .36rem;color: #FFFFFF;}
+	    	.mod-info {text-align:center;padding: .4rem 0 .2rem 0;}
+	    	.mod-info .info-pic{width: 1rem;height: 1rem;border-radius: 100%;overflow: hidden;margin: 0 auto .15rem auto;border: 1px solid rgba(43, 43, 43, 0.5);}
+	    	.info-pic img{width:100%;height: auto;border-radius: 100%;}
+	    	.mod-info .info-txt .tit {font-size: .3rem;margin-bottom: .1rem;}
+	    	.mod-info .info-txt span{font-size: .2rem;}
+	    	.mod-info .info-txt span:first-of-type {margin-right: .2rem;}
+	    	.mod-info .info-txt span em{font-size:.36rem;color: #fec202;}
+	    	.mod-video .video-main video{width:100%;height: auto;}
+	    	.mod-video .video-info {margin: 0 .1rem;}
+	    	.mod-video .video-info .info-tit{float: left;margin-top:.1rem;}
+	    	.mod-video .video-info .info-tit a {font-size:.3rem;color: #000000;}
+	    	.mod-video .video-info .info-act {float: right;}
+	    	.video-info .info-act .act-item{float: left;margin-left:.3rem;}
+	    	.video-info .info-act .act-item .mui-icon {font-size:.42rem;color: #000000;}
+	    	.video-info .info-act .act-item p{font-size:.2rem;color: #000000;text-align: center;margin-bottom:0;}
+	    	.video-info .info-txt{float: left;margin-top:.1rem;padding:0 .1rem;}
+	    	.video-info .info-txt p{font-size:.24rem;line-height: 1.4;color: #000000;}
+	    	.video-info .info-txt p em{font-weight: bold;}
+		</style>
+	</head>
+	<body>
+		<div class="mui-content">
+			<div class="mod-card">
+				<ul class="card-list" style="transform:translateY(0);">
+					<li class="card-item">
+						<div class="mod-label">
+							<div class="label-source">
+								<p>小编推荐</p>
+							</div>
+						</div>
+						<div class="mod-info">
+							<div class="info-pic">
+								<img src="../../temp/images/rishiji.png" alt="up主 头像"/>
+							</div>
+							<div class="info-txt">
+								<h3 class="tit">日食记</h3>
+								<span><em>20w</em>粉丝</span>
+								<span><em>100</em>个视频</span>
+							</div>
+						</div>
+						<div class="mod-video">
+							<div class="video-main">
+								<video id="video" webkit-playsinline playsinline controls="controls"  preload="auto" poster="http://download.dcloud.net.cn/FastAndroid-mini.jpg" width="100%" height="auto">
+									<source src="http://download.dcloud.net.cn/FastAndroid-mini.m4v" type="video/mp4">
+									<source src="http://download.dcloud.net.cn/FastAndroid-mini.webm" type="video/webm">
+									<source src="http://download.dcloud.net.cn/FastAndroid-mini.ogv" type="video/ogg">
+									<source src="http://download.dcloud.net.cn/FastAndroid-mini.mp4">
+								</video>
+							</div>
+							<div class="video-info clearfix">
+								<div class="info-tit">
+									<a data-title-type="transparent_native" href="../detail/video-detail.html">【牛肉面】</a>
+								</div>
+								<div class="info-act">
+									<ul class="act-list clearfix">
+										<li class="act-item">
+											<a href="javascript:;">
+												<i class="mui-icon mui-icon-star"></i>
+												<p>10w</p>	
+											</a>
+										</li>
+										<li class="act-item">
+											<a href="javascript:;">
+												<i class="mui-icon mui-icon-chatboxes"></i>
+												<p>89</p>	
+											</a>
+										</li>
+										<li class="act-item">
+											<a href="javascript:;">
+												<i class="mui-icon mui-icon-upload"></i>
+												<p>2390</p>	
+											</a>
+										</li>
+									</ul>
+								</div>
+								<div class="info-txt">
+									<p><em>小编推荐语：</em>视频超级精彩视频超级精彩视频超级精彩视频超级精彩视频超级精彩视频超级精彩视频超级精彩</p>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li class="card-item">
+						<div class="mod-label">
+							<div class="label-source">
+								<p>小编推荐</p>
+							</div>
+						</div>
+						<div class="mod-info">
+							<div class="info-pic">
+								<img src="../../temp/images/rishiji.png" alt="up主 头像"/>
+							</div>
+							<div class="info-txt">
+								<h3 class="tit">日食记2</h3>
+								<span><em>20w</em>粉丝</span>
+								<span><em>100</em>个视频</span>
+							</div>
+						</div>
+						<div class="mod-video">
+							<div class="video-main">
+								<video id="video" webkit-playsinline playsinline controls="controls"  preload="auto" poster="http://download.dcloud.net.cn/FastAndroid-mini.jpg" width="100%" height="auto">
+									<source src="http://download.dcloud.net.cn/FastAndroid-mini.m4v" type="video/mp4">
+									<source src="http://download.dcloud.net.cn/FastAndroid-mini.webm" type="video/webm">
+									<source src="http://download.dcloud.net.cn/FastAndroid-mini.ogv" type="video/ogg">
+									<source src="http://download.dcloud.net.cn/FastAndroid-mini.mp4">
+								</video>
+							</div>
+							<div class="video-info clearfix">
+								<div class="info-tit">
+									<a href="#">【牛肉面】</a>
+								</div>
+								<div class="info-act">
+									<ul class="act-list clearfix">
+										<li class="act-item">
+											<a href="javascript:;">
+												<i class="mui-icon mui-icon-star"></i>
+												<p>10w</p>	
+											</a>
+										</li>
+										<li class="act-item">
+											<a href="javascript:;">
+												<i class="mui-icon mui-icon-chatboxes"></i>
+												<p>89</p>	
+											</a>
+										</li>
+										<li class="act-item">
+											<a href="javascript:;">
+												<i class="mui-icon mui-icon-upload"></i>
+												<p>2391</p>	
+											</a>
+										</li>
+									</ul>
+								</div>
+								<div class="info-txt">
+									<p><em>小编推荐语：</em>视频超级精彩视频超级精彩视频超级精彩视频超级精彩视频超级精彩视频超级精彩视频超级精彩</p>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li class="card-item">
+						<div class="mod-label">
+							<div class="label-sort">
+								<span>科技</span>
+								<span>美食</span>
+							</div>
+							<div class="label-source">
+								<p>猜你喜欢</p>
+							</div>
+						</div>
+						<div class="mod-info">
+							<div class="info-pic">
+								<img src="../../temp/images/rishiji.png" alt="up主 头像"/>
+							</div>
+							<div class="info-txt">
+								<h3 class="tit">日食记3</h3>
+								<span><em>20w</em>粉丝</span>
+								<span><em>100</em>个视频</span>
+							</div>
+						</div>
+						<div class="mod-video">
+							<div class="video-main">
+								<video id="video" webkit-playsinline playsinline controls="controls"  preload="auto" poster="http://download.dcloud.net.cn/FastAndroid-mini.jpg" width="100%" height="auto">
+									<source src="http://download.dcloud.net.cn/FastAndroid-mini.m4v" type="video/mp4">
+									<source src="http://download.dcloud.net.cn/FastAndroid-mini.webm" type="video/webm">
+									<source src="http://download.dcloud.net.cn/FastAndroid-mini.ogv" type="video/ogg">
+									<source src="http://download.dcloud.net.cn/FastAndroid-mini.mp4">
+								</video>
+							</div>
+							<div class="video-info clearfix">
+								<div class="info-tit">
+									<a href="#">【牛肉面】</a>
+								</div>
+								<div class="info-act">
+									<ul class="act-list clearfix">
+										<li class="act-item">
+											<a href="javascript:;">
+												<i class="mui-icon mui-icon-star"></i>
+												<p>10w</p>	
+											</a>
+										</li>
+										<li class="act-item">
+											<a href="javascript:;">
+												<i class="mui-icon mui-icon-chatboxes"></i>
+												<p>89</p>	
+											</a>
+										</li>
+										<li class="act-item">
+											<a href="javascript:;">
+												<i class="mui-icon mui-icon-upload"></i>
+												<p>2391</p>	
+											</a>
+										</li>
+									</ul>
+								</div>
+								<div class="info-txt">
+									<p><em>小编推荐语：</em>视频超级精彩视频超级精彩视频超级精彩视频超级精彩视频超级精彩视频超级精彩视频超级精彩</p>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript">
+			window.requestAnimationFrame = (function(){
+				return window.requestAnimationFrame        ||
+					   window.webkitRequestAnimationFrame  ||
+					   window.mozRequestAnimationFrame     ||
+					   function(callback){
+					   	  window.setTimeout(callback, 1000 / 60);
+					   };
+			});
+			mui.init({
+				gestureConfig:{
+					swipe:true,
+					drag:false
+				}
+			});
+			mui.plusReady(function(){
+				mui('#video')[0].addEventListener('webkitbeginfullscreen', function() {
+				    plus.screen.lockOrientation('landscape'); //锁死屏幕方向为横屏
+				});
+				mui('#video')[0].addEventListener('webkitendfullscreen', function() {
+				//  plus.screen.unlockOrientation(); //解除屏幕方向的锁定，但是不一定是竖屏；
+				    plus.screen.lockOrientation('portrait'); //锁死屏幕方向为竖屏
+				});
+				
+				var swipeCount = 0;
+				mui(window)[0].addEventListener('swipeup', function(e){
+					swipeCount += 1;
+					mui('.mod-card .card-list')[0].style.transform = 'translateY(-' + (swipeCount * 100) + 'vh)';
+				});
+				mui(window)[0].addEventListener('swipedown', function(){
+					if(swipeCount){
+						--swipeCount;
+					}else {
+//						alert('到顶部了');
+					}
+					mui('.mod-card .card-list')[0].style.transform = 'translateY(-' + (swipeCount * 100) + 'vh)';
+				});
+				
+				var aniShow = "slide-in-right";
+				mui('.mui-content').on('tap', 'a', function() {
+					var id = this.getAttribute("href");
+					var href = this.href;
+					
+					var webview_style = {
+						popGesture: "close",
+					}
+					
+					var extras = {};
+	
+					var titleType = this.getAttribute("data-title-type");
+					
+					if(titleType && titleType=="transparent_native") {
+						webview_style.titleNView = {
+							'backgroundColor': '#f7f7f7',
+							'titleText': this.innerHTML.trim(),
+							'titleColor': '#000000',
+							type: 'transparent',
+							autoBackButton: true,
+							splitLine: {
+								color: '#cccccc'
+							}
+						}
+						var webview = plus.webview.create(href, id, webview_style);
+
+						webview.addEventListener("loaded", function() {
+							webview.show(aniShow, 300, null, extras);
+						})
+					}else if(titleType == "native") {
+	
+						var webview = plus.webview.create(href, id, webview_style);
+
+						webview.addEventListener("loaded", function() {
+							webview.show(aniShow, 300, null, extras);
+						})
+	
+					} else {
+						var webview = plus.webview.create(this.href, id, webview_style, extras);
+						webview.addEventListener("loaded", function() {
+							webview.show(aniShow, 300);
+						});
+					}
+				});
+			})
+		</script>
+	</body>
+
+</html>

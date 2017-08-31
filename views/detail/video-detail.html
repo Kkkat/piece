@@ -1,0 +1,232 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../../css/reset.css"/>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/icons-extra.css"/>
+		<style type="text/css">
+			html{font-size:15.625vw;}
+			.btn-back{position:absolute;top:23px;color:#000000;font-size:.64rem;}
+			.mod-video video{width:100%}
+			.mod-video .video-info{display: flex;padding:.1rem .2rem;border-bottom:1px solid #c5c5c5;}
+			.video-info .info-up .up-pic{width:1.25rem;height:1.25rem;border-radius:100%;border:2px solid rgba(43,43,43,0.5);position:relative;}
+			.video-info .info-up .up-pic.v:after{content: '';position:absolute;width:.36rem;height:.36rem;background: url(../../img/v.png);background-size:100% auto;bottom:-.1rem;right:0;}
+			.info-up .up-pic img{width:100%;height:auto;}
+			.info-up .up-txt p{text-align:center;font-size:.3rem;color:#000000;margin-top:.16rem;}
+			.info-video{margin-left:.1rem;}
+			.info-video .video-tit h2{font-size:.4rem;}
+			.info-video .video-label{margin:.2rem .2rem;}
+			.info-video .video-label .label-item{font-size:.21rem;color:#FFFFFF;padding:.1rem .2rem;border-radius:.3rem;background:#FEC202;}
+			.info-video .video-desc{margin-left: .2rem;}
+			.info-video .video-desc span{font-size:.24rem;}
+			.info-video .video-desc span em{font-size:.4rem;margin:0 .4rem 0 .1rem;font-weight:bold;}
+			
+			.mod-group{margin:.2rem;}
+			.mod-group .group-list li{padding-bottom:.1rem;border-bottom:1px solid #C5C5C5;margin-bottom:.24rem;}
+			.mod-group .group-list li:last-child{border-bottom:none;}
+			.mod-group .group-tit h3{font-size:.32rem;margin-bottom:.2rem;}
+			
+			.mod-media{display:flex;}
+			.mod-media .media-pic{flex:1;}
+			.mod-media .media-pic img{width:100%;}
+			.mod-media .media-info{flex:1.5;}
+			.media-info .info-tit h4{font-size:.3rem;}
+			.media-info .info-desc{margin: .2rem .2rem .16rem .24rem;}
+			.media-info .info-desc span{font-size:.2rem;}
+			.media-info .info-desc span em{font-size:.32rem;margin:0 .2rem 0 0;font-weight:bold;}
+			.media-info .info-act{display:flex;}
+			.media-info .info-act .act-item{display:flex;align-items:center;color:#000000;font-size:.28rem;}
+			.media-info .info-act .act-item i{margin-right:.1rem;font-size:.36rem;margin-left:.3rem;}
+		</style>
+	</head>
+	<body>
+		<nav class="mui-bar mui-bar-tab">
+		    <a id="defaultTab" class="mui-tab-item" href="javascript:;">
+		        <span class="mui-icon mui-icon-star"></span>
+		        <span class="mui-tab-label">12</span>
+		    </a>
+		    <a class="mui-tab-item" href="javascript:;">
+		        <span class="mui-icon mui-icon-chatboxes"></span>
+		        <span class="mui-tab-label">12</span>
+		    </a>
+		    <a class="mui-tab-item" href="javascript:;">
+		        <span class="mui-icon mui-icon-upload"></span>
+		        <span class="mui-tab-label">12</span>
+		    </a>
+		</nav>
+		<div class="mui-content">
+			<div class="mod-video">
+				<div class="video-main">
+					<video id="video" webkit-playsinline playsinline controls="controls"  preload="auto" poster="http://download.dcloud.net.cn/FastAndroid-mini.jpg" width="100%" height="auto">
+						<source src="http://download.dcloud.net.cn/FastAndroid-mini.m4v" type="video/mp4">
+						<source src="http://download.dcloud.net.cn/FastAndroid-mini.webm" type="video/webm">
+						<source src="http://download.dcloud.net.cn/FastAndroid-mini.ogv" type="video/ogg">
+						<source src="http://download.dcloud.net.cn/FastAndroid-mini.mp4">
+					</video>
+				</div>
+				<div class="video-info">
+					<div class="info-up">
+						<div class="up-pic v">
+							<img src="../../temp/images/rishiji.png" alt="up主头像" />
+						</div>
+						<div class="up-txt">
+							<p>日食记</p>
+						</div>
+					</div>
+					<div class="info-video">
+						<div class="video-tit">
+							<h2>【芒果白雪黑糯米甜甜】</h2>
+						</div>
+						<div class="video-label">
+							<span class="label-item">美食</span>
+							<span class="label-item">萌宠</span>
+						</div>
+						<div class="video-desc">
+							<span>时长 <em>05:00</em></span>
+							<span>播放量 <em>23</em></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="mod-group">
+				<div class="group-tit">
+					<h3>相关推荐</h3>
+				</div>
+				<div class="group-list">
+					<ul>
+						<li>
+							<div class="mod-media">
+								<div class="media-pic">
+									<img src="../../temp/images/pic.jpg" alt="视频缩略图"/>
+								</div>
+								<div class="media-info">
+									<div class="info-tit">
+										<h4>【彩虹沙拉 + 樱桃苏打】</h4>
+									</div>
+									<div class="info-desc">
+										<span>时长 <em>05:00</em></span>
+										<span>播放量 <em>23</em></span>
+									</div>
+									<div class="info-act">
+										<a href="#" class="act-item">
+											<i class="mui-icon-extra mui-icon-extra-heart"></i>
+											<em>12</em>
+										</a>
+										<a href="#" class="act-item">
+											<i class="mui-icon mui-icon-chatboxes"></i>
+											<em>20</em>
+										</a>
+										<a href="#" class="act-item">
+											<i class="mui-icon mui-icon-upload"></i>
+											<em>3</em>
+										</a>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="mod-media">
+								<div class="media-pic">
+									<img src="../../temp/images/pic.jpg" alt="视频缩略图"/>
+								</div>
+								<div class="media-info">
+									<div class="info-tit">
+										<h4>【彩虹沙拉 + 樱桃苏打】</h4>
+									</div>
+									<div class="info-desc">
+										<span>时长 <em>05:00</em></span>
+										<span>播放量 <em>23</em></span>
+									</div>
+									<div class="info-act">
+										<a href="#" class="act-item">
+											<i class="mui-icon-extra mui-icon-extra-heart"></i>
+											<em>12</em>
+										</a>
+										<a href="#" class="act-item">
+											<i class="mui-icon mui-icon-chatboxes"></i>
+											<em>20</em>
+										</a>
+										<a href="#" class="act-item">
+											<i class="mui-icon mui-icon-upload"></i>
+											<em>3</em>
+										</a>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="mod-media">
+								<div class="media-pic">
+									<img src="../../temp/images/pic.jpg" alt="视频缩略图"/>
+								</div>
+								<div class="media-info">
+									<div class="info-tit">
+										<h4>【彩虹沙拉 + 樱桃苏打】</h4>
+									</div>
+									<div class="info-desc">
+										<span>时长 <em>05:00</em></span>
+										<span>播放量 <em>23</em></span>
+									</div>
+									<div class="info-act">
+										<a href="#" class="act-item">
+											<i class="mui-icon-extra mui-icon-extra-heart"></i>
+											<em>12</em>
+										</a>
+										<a href="#" class="act-item">
+											<i class="mui-icon mui-icon-chatboxes"></i>
+											<em>20</em>
+										</a>
+										<a href="#" class="act-item">
+											<i class="mui-icon mui-icon-upload"></i>
+											<em>3</em>
+										</a>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="mod-media">
+								<div class="media-pic">
+									<img src="../../temp/images/pic.jpg" alt="视频缩略图"/>
+								</div>
+								<div class="media-info">
+									<div class="info-tit">
+										<h4>【彩虹沙拉 + 樱桃苏打】</h4>
+									</div>
+									<div class="info-desc">
+										<span>时长 <em>05:00</em></span>
+										<span>播放量 <em>23</em></span>
+									</div>
+									<div class="info-act">
+										<a href="#" class="act-item">
+											<i class="mui-icon-extra mui-icon-extra-heart"></i>
+											<em>12</em>
+										</a>
+										<a href="#" class="act-item">
+											<i class="mui-icon mui-icon-chatboxes"></i>
+											<em>20</em>
+										</a>
+										<a href="#" class="act-item">
+											<i class="mui-icon mui-icon-upload"></i>
+											<em>3</em>
+										</a>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+	</body>
+
+</html>

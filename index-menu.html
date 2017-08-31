@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="css/icons-extra.css"/>
+		<style type="text/css">
+			@import url("fonts/mui-icons-extra.ttf");
+			html{font-size:15.625vw;}
+			body,.mui-content {background-color: #fff;color: #000;}
+			.mod-info {padding: .5rem 0 0 0;background-color: #fee080;border-bottom: 1px solid #a1a1a1;display: flex;flex-direction: column;}
+			.mod-info .info-basic {display: flex;}
+			.info-basic .info-avatar {display: flex;width:1.8rem;height:1.8rem;border-radius:100%;overflow: hidden;margin: 0 .2rem;}
+			.info-avatar img{width:100%;height:auto;}
+			.info-msg {margin-top:.35rem;}
+			.info-msg .msg-tit h3{font-size:.5rem;font-weight: bold;color: #000;}
+			.info-msg .msg-txt span{font-size:.21rem;}
+			.info-msg .msg-txt span em{font-size:.42rem;}
+			.mod-info .info-slo{margin-top: .1rem;margin-left:.28rem;}
+			.info-slo p{font-size:.3rem;color: #000000;margin-bottom:.1rem;}
+
+			.content .box-cont{margin: .2rem 0;padding: 0 .5rem;}
+			.content .box-cont .cont-list .cont-item{line-height:1rem;}
+			.content .box-cont .cont-list .cont-item .icon-cont{width:.8rem;font-size:.64rem;color: #000000;vertical-align:middle;margin-right:.2rem;}
+			.content .box-cont .cont-list .cont-item .tit{font-size:.42rem;color:#000000;}
+		</style>
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<div class="mod-info">
+				<div class="info-basic">
+					<div class="info-avatar">
+						<img src="temp/images/avatar.jpg"/>
+					</div>
+					<div class="info-msg">
+						<div class="msg-tit">
+							<h3>马 小 锴</h3>
+						</div>
+						<div class="msg-txt">
+							<span><em>121</em> 关注</span>
+							<span><em>18w</em> 粉丝</span>
+						</div>
+					</div>
+				</div>
+				<div class="info-slo">
+					<p>从你的全世界路过</p>
+				</div>
+			</div>
+			<div class="content">
+				<div class="box-cont">
+					<ul class="cont-list">
+						<li class="cont-item">
+							<a href="views/information/collection.html">
+								<i class="icon-cont mui-icon-extra mui-icon-extra-heart"></i>
+								<span class="tit">我的收藏</span>
+							</a>
+						</li>
+						<li class="cont-item">
+							<a href="views/information/collection.html">
+								<i class="icon-cont mui-icon mui-icon-email"></i>
+								<span class="tit">消息盒子</span>
+							</a>
+						</li>
+						<li class="cont-item">
+							<a href="views/information/collection.html">
+								<i class="icon-cont mui-icon mui-icon-info"></i>
+								<span class="tit">历史记录</span>
+							</a>
+						</li>
+						<li class="cont-item">
+							<a href="views/information/collection.html">
+								<i class="icon-cont mui-icon mui-icon-gear"></i>
+								<span class="tit">我的设置</span>
+							</a>
+						</li>
+						<li class="cont-item">
+							<a data-title-type="native" href="views/information/collection.html">
+								<i class="icon-cont mui-icon-extra mui-icon-extra-custom"></i>
+								<span class="tit">我的客服</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			var aniShow = "slide-in-right";
+			//关于backbutton和menubutton两个按键的说明，在iOS平台不存在，故需隐藏
+			if(!mui.os.android) {
+				var span = document.getElementById("android-only")
+				if(span) {
+					span.style.display = "none";
+				}
+			}
+
+			var subWebview = null,
+				template = null,
+				index = null;
+			mui.plusReady(function() {
+				//获得主页面webview引用；
+				index = plus.webview.currentWebview().opener();
+				var _self = plus.webview.currentWebview();
+				_self.drag({
+					direction: "left",
+					moveMode: "followFinger"
+				}, {
+					view: index,
+					moveMode: "follow"
+				}, function(e) {});
+
+			})
+			mui('.content').on('tap', 'a', function() {
+				var id = this.getAttribute("href");
+				var href = this.href;
+				
+				var webview_style = {
+					popGesture: "close",
+					statusbar: {
+						background: '#F7F7F7'
+					}
+				}
+				
+				var extras = {};
+
+				var titleType = this.getAttribute("data-title-type");
+
+				if(titleType == "native") {
+
+					if(!~id.indexOf('pullrefresh.html')) {
+						webview_style.bounce = "vertical";
+					}
+
+					var webview = plus.webview.create(href, id, webview_style);
+//					var view = new plus.nativeObj.View("title", {
+//						top: 0,
+//						height: "44px",
+//						width: "100%",
+//						dock: "top",
+//						position: "dock"
+//					});
+//
+//					view.drawRect("#f7f7f7"); //绘制背景色
+//
+//					view.setTouchEventRect({
+//						top: "0px",
+//						left: "0px",
+//						width: "44px",
+//						height: "100%"
+//					});
+//					view.interceptTouchEvent(true);
+//					view.addEventListener("click", function(e) {
+//						webview.evalJS("mui.back();");
+//					}, false);
+//					webview.append(view);
+
+					webview.addEventListener("loaded", function() {
+						webview.show(aniShow, 300, null, extras);
+					})
+
+				} else {
+					//侧滑菜单需动态控制一下zindex值；
+					if(~id.indexOf('offcanvas-')) {
+						webview_style.zindex = 9998;
+						webview_style.popGesture = ~id.indexOf('offcanvas-with-right') ? "close" : "none";
+					}
+
+					var webview = plus.webview.create(this.href, id, webview_style, extras);
+					webview.addEventListener("loaded", function() {
+						webview.show(aniShow, 300);
+					});
+				}
+			});
+			mui.init({
+				swipeBack: false,
+				keyEventBind: {
+					backbutton: false //关闭back按键监听
+				}
+			});
+			
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>首页2</title>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="css/reset.css"/>
+    <link href="//vjs.zencdn.net/5.19/video-js.min.css" rel="stylesheet">
+</head>
+<body>
+	<!--<header class="mui-bar mui-bar-nav">
+	    <a href="javascript:;" class="mui-pull-left mui-avatar">
+	    	<img src="temp/images/avatar.jpg" alt="头像"/>
+	    </a>
+	    <h1 class="mui-title">标题</h1>
+	    <a href="javascript:;" class="mui-icon mui-icon-bars mui-icon-right-nav mui-pull-right"></a>
+	</header>-->
+
+	<nav class="mui-bar mui-bar-tab">
+	    <a id="defaultTab" class="mui-tab-item mui-active" href="views/index/home.html">
+	        <span class="mui-icon mui-icon-home"></span>
+	    </a>
+	    <a class="mui-tab-item" href="views/index/follow.html">
+	        <span class="mui-icon mui-icon-star"></span>
+	    </a>
+	    <a class="mui-tab-item" href="views/index/puzzle.html">
+	        <span class="mui-icon mui-icon-person"></span>
+	    </a>
+	</nav>
+	<script src="js/mui.min.js"></script>
+	<script src="//vjs.zencdn.net/5.19/video.min.js"></script>
+	<script type="text/javascript" charset="utf-8">
+      	mui.init({
+      		statusBarBackground: '#000000',
+      	});
+      	
+      	var aniShow = "pop-in";
+      	var menu = null,
+      		showMenu = false;
+      	var isInTransition = false;
+      	var _self;
+      	
+      	// tab 
+      	var subpages = ['views/index/home.html', 'views/index/follow.html', 'views/index/puzzle.html'];
+		var subpage_style = {
+			top: '0',
+			bottom: '51px'
+		};
+		var tabAniShow = {};
+      	
+      	mui.plusReady(function(){
+      		//读取本地存储，检查是否为首次启动
+      		var showGuide = plus.storage.getItem('lauchFlag');
+      		//仅支持竖屏显示
+      		plus.screen.lockOrientation('portrait-primary');
+      		if(showGuide) {
+      			//有值，说明已经显示过了，无需显示；
+      			//关闭splash页面
+      			plus.navigator.closeSplashscreen();
+      			plus.navigator.setFullscreen(false);
+      			//预加载
+      			preload();
+      		}else{
+      			//显示启动导航
+      			mui.openWindow({
+      				id: 'guide',
+      				url: 'views/guide/guide.html',
+      				styles: {
+      					popGesture: 'none'
+      				},
+      				show: {
+      					aniShow: 'none'
+      				},
+      				waiting: {
+      					autoShow: false
+      				}
+      			});
+      			setTimeout(function() {
+      				preload();
+      			}, 200);		
+      		}
+    		
+			//绘制顶部图标
+			_self = plus.webview.currentWebview();
+			var titleView = _self.getNavigationbar();
+
+			if(!titleView) {
+				titleView = plus.webview.getLaunchWebview().getNavigationbar();
+			}
+
+			titleView.drawRect("#cccccc", {
+				top: "43px",
+				height:"1px",
+				left: "0px"
+			}); //绘制底部边线
+
+			//开启回弹
+			_self.setStyle({
+				bounce: "vertical",
+				bounceBackground:"#efeff4"
+			});
+
+			//绘制左上角menu图标
+			var bitmap_menu = new plus.nativeObj.Bitmap("menu");
+			bitmap_menu.loadBase64Data("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACS0lEQVRIS7VVPW8aQRCdYaGMlJ8AUvqQX2DcIdiVjjqKQn6B7yfYvwDoI8V9ChPtHqIzUqpUdvpIpk5jUt9xz5rTHuLjDs5I2QqJ2ffm7bw3x3TidLvdZqPRuALQYea2lAN4ZOZFHMeT+Xy+PAbBx/7UWo+Z+YqIfggoES18vZB1iOgCQOicm5ThlBIYYwSsDSBwzuXAOzj9fj+s1WrXRHRnrf1SRFJIoLW+ZuZQKdWcTqerYyp7vV5bKfVARANr7XS/9oDAv/lT2YUiMt/QZ2tt6ySByGbmoXMuG2jVY4xBUVMHCuTtZaDOubAquNT5ewvnnMxkc8oIDgpPkXnHNa21wX8hMMZMASz3lRcpuCUi6UR8XvlorZcAxlEUjU8pEInflFKtUxbNgXKrxnHc2k92WQ4ktU/OuUEVCVprWR2P1trhSZtKge9I3DRyzt2UkQRB8Ha9Xo/EnmWhLF0VWuuPRPSViP6kafppNpuJqs3RWsuMvhNRTdZJFEU/K62Kra6GaZr+Yua/zGzkMoBsJ/lFJz/vAbxj5jcy4CK1Owr809wB+EdEsiUzQE/aAZClW95bKbXITWCMCYSAiJ6TJBlsD3pDkDsBwOS1Kd5qQix+Ecfxh5wkI/AL7sGD70S9iou2a4wxtwDe1+v1S1GYEfjdv9qP+WvBcyVJksjTyroJWdzAzPdFITmHQO5sY7LvflkUknMJ8lfJvt2yxwFcln0WzyUxxkiqh5kCAM9pmt7sh+lccB/CETP/Zu9xmfzBqj2XQFY3Ea2UUuELdutdwiki7W8AAAAASUVORK5CYII=");
+			titleView.drawBitmap(bitmap_menu, {}, {
+				top: "10px",
+				left: "10px",
+				width: "24px",
+				height: "24px"
+			});
+
+			var about_left = window.innerWidth - 34;
+			var bitmap = new plus.nativeObj.Bitmap("about");
+			bitmap.loadBase64Data("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAQAAAD9CzEMAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAHdElNRQfhARcBEina5qaZAAAB10lEQVRYw+2XP0vDQBiHf7Wlq63gLAgV/QpOBnEpZHJycBL6Lq2LuFq6Kn6AK2RxKQhu2aS0XQT7DbTgLqVGR4OlDtL8uUu8S3Lape/Wy93z5L1r7t4DlrHoyCXrznZRhEsPWgUsj0PUsC886KKNO5pmErAKWjj6tUsHTRqlErBVXONEaR4snNFHQgHbQ08JPg+D+lHNKzH4ekI80GP1qOZ8JP4ClwnxAFA1Z/ZAQcDqqfAAYJgTexhuEtYg8dwLkvBacAJWxlsmPACskeP/4Bf5KjOeY4QyYBU8SwZv4x2P2JD02vI/vXAGLcnAFj3RK06lOQQ4gQwU5v8FO3Bxg2OpwluHQqDxQDpsE5/SPnPWrThFNcXBKuGxvClieXxpFACFn43cz6CsNMygHAylnmV+ita1vr/HS5qBeggZFDULirzA1SxweYGTEhQXDi8YaxaM/zsDmqKrEd+d10vBraKtUeCxgoJ7jQKPFRCQg44mfMc/NJOeaGoRd6LRCJYGvBWsVflD/1yDIMTgBOQobsbxYVDoixJqU+qjkQHf4EvgiNLRHpqzlHk0SairIotfe2BOUE3x9hFl26LuBwD1UVL+01ooReMXe0fzJH95yxRkie/Jy5DGN/4FegI2+YzMAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE3LTAxLTIzVDAxOjE4OjQxKzA4OjAw3fCu8gAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxNy0wMS0yM1QwMToxODo0MSswODowMKytFk4AAAAASUVORK5CYII=");
+			titleView.drawBitmap(bitmap, {}, {
+				top: "10px",
+				left: about_left + "px",
+				width: "24px",
+				height: "24px"
+			});
+
+			titleView.interceptTouchEvent(true);
+			titleView.addEventListener("click", function(e) {
+				var x = e.clientX;
+				if(x < 44) { //触发menu菜单
+					var _left = parseInt(_self.getStyle().left);
+					if(_left > 0) { //处于显示状态
+						closeMenu();
+					} else {
+						openMenu();
+					}
+				} else if(x > about_left) { //触发关于页面
+					var aniShow = mui.os.plus ? "slide-in-right" : "zoom-fade-out";
+					mui.openWindow({
+						url: "examples/info.html",
+						id: "info",
+						styles: {
+							popGesture: "close",
+							statusbar: {
+								background: "#f7f7f7"
+							}
+						},
+						show: {
+							aniShow: aniShow,
+							duration: 300
+						}
+					});
+				}
+			}, false);
+			
+			for (var i = 0; i < 3; i++) {
+				var temp = {};
+				var sub = plus.webview.create(subpages[i], subpages[i], subpage_style);
+				if (i > 0) {
+					sub.hide();
+				}else{
+					temp[subpages[i]] = "true";
+					mui.extend(tabAniShow,temp);
+				}
+				_self.append(sub);
+			}
+			//当前激活选项
+			var activeTab = subpages[0];
+			//选项卡点击事件
+			mui('.mui-bar-tab').on('tap', 'a', function(e) {
+				var targetTab = this.getAttribute('href');
+				if (targetTab == activeTab) {
+					return;
+				}
+				//显示目标选项卡
+				//若为iOS平台或非首次显示，则直接显示
+				if(mui.os.ios||tabAniShow[targetTab]){
+					plus.webview.show(targetTab);
+				}else{
+					//否则，使用fade-in动画，且保存变量
+					var temp = {};
+					temp[targetTab] = "true";
+					mui.extend(tabAniShow,temp);
+					plus.webview.show(targetTab,"fade-in",300);
+				}
+				//隐藏当前;
+				plus.webview.hide(activeTab);
+				//更改当前活跃的选项卡
+				activeTab = targetTab;
+			});
+			
+			
+      		//启用侧滑拖拽操作，延时的原因是menu页是延时创建的，所以这里需要相应延时
+			setTimeout(function() {
+				_self.drag({
+					direction: "right",
+					moveMode: "followFinger"
+				}, {
+					view: menu,
+					moveMode: "follow"
+				}, function(e) {
+//					console.log(JSON.stringify(e));
+				});
+			}, 350);
+			
+      	});
+      	// 预加载
+		function preload(){
+      		
+      		var menu_style = {
+      			left: "-80%",
+      			width: "80%",
+      			popGesture: "none",
+      			render: "always",
+      			statusbar: {
+					background: "#fee080"
+				}
+      		};
+      		
+      		if(mui.os.ios) {
+      			menu_style.zIndex = -1;
+      		}
+      		
+      		menu = mui.openWindow({
+      			id: 'index-menu',
+      			url: 'index-menu.html',
+      			styles: menu_style,
+      			show: {
+      				aniShow: 'none'
+      			},
+      			waiting: {
+      				autoShow: false
+      			}
+      		});
+      	}
+      	//显示侧滑菜单
+      	function openMenu() {
+      		plus.webview.startAnimation({
+      			'view': _self,
+      			'styles': {
+      				'fromLeft': '0',
+      				'toLeft': '80%'
+      			},
+      			'action': 'show'
+      		},{
+      			'view': menu,
+      			'styles': {
+      				'fromLeft': '-80%',
+      				'toLeft': '0'
+      			},
+      			'action': 'show'
+      		},
+      		function(e) {
+      			if(e.id == menu.id) {
+      				
+      			}
+      		}.bind(this)
+      		)
+      	}
+      	//关闭菜单
+      	function closeMenu(){
+      		plus.webview.startAnimation({
+      				'view': _self,
+      				'styles': {
+      					'fromLeft': '80%',
+      					'toLeft': '0'
+      				},
+      				'action': 'show'
+      			},{
+      				'view': menu,
+      				'styles': {
+      					'fromLeft': '0',
+      					'toLeft': '-80%'
+      				},
+      				'action': 'show'
+      			},
+      			function(e) {
+      				console.log(JSON.stringify(e));
+      				if(e.id == _self.id) {}
+      			}.bind(this)
+      		)
+      	}
+      	window.addEventListener('menu:close',closeMenu);
+      	mui.menu = function() {
+      		if(parseInt(_self.getStyle().left) > 0) closeMenu();
+      		else openMenu();
+      	}
+      	var h = new Date().getHours();
+	    if(h >= 6 && h <= 12) {
+	    	document.title = "Good Morning";
+	    }else if(h > 12 && h <= 18) {
+	    	document.title = "Good Afternoon";
+	    }else {
+	    	document.title = "Good Evening";
+	    }
+      	
+		 //自定义事件，模拟点击“首页选项卡”
+		document.addEventListener('gohome', function() {
+			var defaultTab = document.getElementById("defaultTab");
+			//模拟首页点击
+			mui.trigger(defaultTab, 'tap');
+			//切换选项卡高亮
+			var current = document.querySelector(".mui-bar-tab>.mui-tab-item.mui-active");
+			if (defaultTab !== current) {
+				current.classList.remove('mui-active');
+				defaultTab.classList.add('mui-active');
+			}
+		});
+    </script>
+</body>
+</html>
