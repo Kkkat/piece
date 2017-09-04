@@ -61,29 +61,29 @@
 						mui('.tit-btn')[i].classList.remove('active');
 					}
 					mui(this)[0].classList.add('active');
-				});
-				mui('.mui-content').on('tap', '.btn-login', function(){
-					var usr = mui('input[name=usr]')[0].value,
-						pwd = mui('input[name=password]')[0].value;
-					console.log(usr,pwd);
-				});
-				
+				});				
 			});
 			mui('.mui-content').on('tap', '.btn-login', function(){
+					var usr = mui('input[name=usr]')[0].value,
+						pwd = mui('input[name=password]')[0].value;
+					console.log(usr, pwd);
 				mui.ajax({
-					url: 'http://10.10.81.101:5000/',
-					data: {},
+					url: 'http://10.10.81.101:5000/login/',
+					data: {
+						'name': usr,
+						'password': pwd
+					},
 					dataType:'JSON',//服务器返回json格式数据
 					async: true,
 					crossDomain: true,
 					type:'GET',//HTTP请求类型
 					timeout:5000,//超时时间设置为10秒；
 					headers:{'Content-Type':'application/json'},
-					processData: false,
+					processData: true,
 					success:function(data){
 						//服务器返回响应，根据响应结果，分析是否登录成功；
 						console.log('success');
-                		console.log(typeof(data));
+                		console.log(data);
 					},
 					error:function(xhr,type,errorThrown){
 						//异常处理
