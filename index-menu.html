@@ -14,7 +14,7 @@
 			@import url("fonts/mui-icons-extra.ttf");
 			html{font-size:15.625vw;}
 			body,.mui-content {background-color: #fff;color: #000;}
-			.mod-info {padding: .5rem 0 0 0;background-color: #fee080;border-bottom: 1px solid #a1a1a1;display: flex;flex-direction: column;}
+			.mod-info {padding: .5rem 0 0 0;background-color: #fee080;border-bottom: 1px solid #a1a1a1;display: flex;flex-direction: column;height:3.2rem;}
 			.mod-info .info-basic {display: flex;}
 			.info-basic .info-avatar {display: flex;width:1.8rem;height:1.8rem;border-radius:100%;overflow: hidden;margin: 0 .2rem;}
 			.info-avatar img{width:100%;height:auto;}
@@ -35,22 +35,27 @@
 	<body>
 		<div class="mui-content">
 			<div class="mod-info">
-				<div class="info-basic">
-					<div class="info-avatar">
-						<img src="temp/images/avatar.jpg"/>
+				<div class="info-logined" style="display: none;">
+					<div class="info-basic">
+						<div class="info-avatar">
+							<img src="temp/images/avatar.jpg"/>
+						</div>
+						<div class="info-msg">
+							<div class="msg-tit">
+								<h3>马 小 锴</h3>
+							</div>
+							<div class="msg-txt">
+								<span><em>121</em> 关注</span>
+								<span><em>18w</em> 粉丝</span>
+							</div>
+						</div>
 					</div>
-					<div class="info-msg">
-						<div class="msg-tit">
-							<h3>马 小 锴</h3>
-						</div>
-						<div class="msg-txt">
-							<span><em>121</em> 关注</span>
-							<span><em>18w</em> 粉丝</span>
-						</div>
+					<div class="info-slo">
+						<p>从你的全世界路过</p>
 					</div>
 				</div>
-				<div class="info-slo">
-					<p>从你的全世界路过</p>
+				<div class="info-login">
+					<a data-title-type="login" href="login.html">登录</a>
 				</div>
 			</div>
 			<div class="content">
@@ -117,15 +122,12 @@
 				}, function(e) {});
 
 			})
-			mui('.content').on('tap', 'a', function() {
+			mui('.mui-content').on('tap', 'a', function() {
 				var id = this.getAttribute("href");
 				var href = this.href;
 				
 				var webview_style = {
-					popGesture: "close",
-					statusbar: {
-						background: '#F7F7F7'
-					}
+					popGesture: "close"
 				}
 				
 				var extras = {};
@@ -137,29 +139,9 @@
 					if(!~id.indexOf('pullrefresh.html')) {
 						webview_style.bounce = "vertical";
 					}
-
+					
+					webview_style.statusbar = {background: '#F7F7F7'};
 					var webview = plus.webview.create(href, id, webview_style);
-//					var view = new plus.nativeObj.View("title", {
-//						top: 0,
-//						height: "44px",
-//						width: "100%",
-//						dock: "top",
-//						position: "dock"
-//					});
-//
-//					view.drawRect("#f7f7f7"); //绘制背景色
-//
-//					view.setTouchEventRect({
-//						top: "0px",
-//						left: "0px",
-//						width: "44px",
-//						height: "100%"
-//					});
-//					view.interceptTouchEvent(true);
-//					view.addEventListener("click", function(e) {
-//						webview.evalJS("mui.back();");
-//					}, false);
-//					webview.append(view);
 
 					webview.addEventListener("loaded", function() {
 						webview.show(aniShow, 300, null, extras);
@@ -184,6 +166,7 @@
 					backbutton: false //关闭back按键监听
 				}
 			});
+			
 			
 		</script>
 	</body>

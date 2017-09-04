@@ -224,9 +224,17 @@
 					"css/mui.min.css"
 				],
 				"refer": [
-					"views/information/collection.html"
+					"views/information/collection.html",
+					"login.html"
 				],
 				"priority": 0
+			},
+			"login.html":{
+				"resources": [
+					"js/mui.min.js",
+					"css/mui.min.css"
+				],
+				"priority":0
 			},
 			"views/follow/follow.html": {
 				"resources": [
