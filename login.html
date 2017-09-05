@@ -45,11 +45,11 @@
 						<div class="cont-login">
 							<div class="usr">
 								<span>用户名：</span>
-								<input type="text" name="usr" placeholder="输入您的用户名" />
+								<input type="text" name="usr" placeholder="输入您的用户名" value="hello" />
 							</div>
 							<div class="pwd">
 								<span>密&nbsp;&nbsp;&nbsp;&nbsp;码：</span>
-								<input type="password" name="password" />
+								<input type="password" name="password"  value="123"/>
 							</div>
 							<div class="cont-btn clearfix">
 								<a href="javascript:;" class="btn-login">登&nbsp;&nbsp;录</a>
@@ -93,14 +93,14 @@
 				});				
 			});
 			mui('.mui-content').on('tap', '.btn-login', function(){
-					var usr = mui('.cont-login input[name=usr]')[0].value,
-						pwd = mui('.cont-login input[name=password]')[0].value;
-					console.log(usr, pwd);
+				var usr = mui('.cont-login input[name=usr]')[0].value,
+					pwd = mui('.cont-login input[name=password]')[0].value;
+				console.log(usr, pwd);
 				mui.ajax({
 					url: 'http://10.10.81.101:5000/login/',
 					data: {
-						'name': usr,
-						'password': pwd
+						name: usr,
+						password: pwd
 					},
 					dataType:'JSON',//服务器返回json格式数据
 					async: true,
@@ -111,8 +111,13 @@
 					processData: true,
 					success:function(data){
 						//服务器返回响应，根据响应结果，分析是否登录成功；
-						console.log('success');
-                		console.log(data);
+						data = JSON.parse(data);
+						console.log(data.login);
+						if(data.login == 'faild') {
+							mui.toast('用户不存在');
+						}else {
+							mui.toast('欢迎体验piece');
+						}
 					},
 					error:function(xhr,type,errorThrown){
 						//异常处理
