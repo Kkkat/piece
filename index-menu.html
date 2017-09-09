@@ -120,7 +120,7 @@
 					view: index,
 					moveMode: "follow"
 				}, function(e) {});
-
+				console.log(JSON.stringify(sessionStorage));
 			})
 			mui('.mui-content').on('tap', 'a', function() {
 				var id = this.getAttribute("href");

@@ -113,10 +113,15 @@
 						//服务器返回响应，根据响应结果，分析是否登录成功；
 						data = JSON.parse(data);
 						console.log(data.login);
-						if(data.login == 'faild') {
+						if(data.login == 'ok'){
+							mui.toast('欢迎体验piece');
+							setTimeout(function(){
+								mui.back();
+							},1000);
+						}else if(data.login == 'nouser') {
 							mui.toast('用户不存在');
 						}else {
-							mui.toast('欢迎体验piece');
+							mui.toast('密码错误');
 						}
 					},
 					error:function(xhr,type,errorThrown){
@@ -127,11 +132,12 @@
 				});
 			});
 			mui('.mui-content').on('tap', '.btn-registry', function(){
+					console.log('regist');
 					var usr = mui('.cont-registry input[name=usr]')[0].value,
 						pwd = mui('.cont-registry input[name=password]')[0].value;
 					console.log(usr, pwd);
 				mui.ajax({
-					url: 'http://10.10.81.101:5000/registry/',
+					url: 'http://10.10.81.101:5000/regist/',
 					data: {
 						'name': usr,
 						'password': pwd
@@ -145,8 +151,14 @@
 					processData: true,
 					success:function(data){
 						//服务器返回响应，根据响应结果，分析是否登录成功；
-						console.log('success');
-                		console.log(data);
+						data = JSON.parse(data);
+                		if(data.regist == 'ok'){
+                			mui.toast('注册成功');
+//              			localStorage.setItem('userId',)
+                			mui.back();
+                		}else{
+                			mui.toast('注册失败');
+                		}
 					},
 					error:function(xhr,type,errorThrown){
 						//异常处理
