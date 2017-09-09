@@ -1,0 +1,174 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+		<style type="text/css">
+			html{font-size:15.625vw;}
+			.mui-content{width:100%;height:100vh;background-image:url(img/login-bg.jpg);background-size:cover;position:relative;overflow:hidden;}
+			.mui-content .mui-action-back{font-size:.36rem;color:#838383;position:absolute;bottom:.54rem;left:.33rem;}
+			.mui-content .piece{position:absolute;width:3rem;height:1.12rem;background-image:url(img/piece.png);background-size:100% auto;top:1.08rem;left:.33rem;}
+			.mui-content .form-list{position:absolute;top:3.3rem;width:100%;box-sizing:border-box;}
+			.form-tit{padding:0 .4rem;}
+			.form-tit a{font-size:.42rem;color:#313131;font-weight: bold;position:absolute;}
+			.form-tit .registry{right:.4rem;}
+			.form-tit a.active{color:#fec202;}
+			.form-tit a.active:after{content:'';display:block;width:.72rem;height:.06rem;border-radius:3px;background:#fec202;margin-top:.06rem;}
+			.form-cont{margin-top:1.2rem;font-size:.3rem;color:#cccccc;width:100%;overflow:hidden;position:relative;}
+			.form-cont .pwd{margin-top:.28rem;}
+			.form-cont span{position:absolute;}
+			.form-cont input{font-size:.3rem;color:#b6b6b6;height:.5rem;text-indent:.9rem;outline:none;background:transparent;border:none;border-bottom:1px solid #CCCCCC;margin-top:-.1rem;border-radius:0;}
+			.form-cont .cont-btn a{float:right;width:1.88rem;height:.64rem;border-radius:.32rem;background-color:#fec202;font-size: .24rem;font-weight:bold;color:#FFFFFF;text-align:center;line-height:.64rem;}
+			
+			.form-cont .cont{width:200%;transition:all .5s;}
+			.form-cont .cont-login{width:50%;float:left;box-sizing:border-box;padding:0 .4rem;}
+			.form-cont .cont-registry{width:50%;float:right;box-sizing:border-box;padding:0 .4rem;}
+		</style>
+	</head>
+
+	<body>
+		
+		<div class="mui-content">
+			<a href="javascript:;" class="mui-action-back">取消</a>
+			<i class="piece"></i>
+			<div class="form-list">
+				<div class="form-tit">
+					<a href="javascript:;" class="tit-btn login active">登 录</a>
+					<a href="javascript:;" class="tit-btn registry">注 册</a>
+				</div>
+				<div class="form-cont">
+					<div class="cont clearfix">
+						<div class="cont-login">
+							<div class="usr">
+								<span>用户名：</span>
+								<input type="text" name="usr" placeholder="输入您的用户名" value="hello" />
+							</div>
+							<div class="pwd">
+								<span>密&nbsp;&nbsp;&nbsp;&nbsp;码：</span>
+								<input type="password" name="password"  value="123"/>
+							</div>
+							<div class="cont-btn clearfix">
+								<a href="javascript:;" class="btn-login">登&nbsp;&nbsp;录</a>
+							</div>
+						</div>
+						<div class="cont-registry">
+							<div class="usr">
+								<span>用户名：</span>
+								<input type="text" name="usr" placeholder="输入您的用户名" />
+							</div>
+							<div class="pwd">
+								<span>密&nbsp;&nbsp;&nbsp;&nbsp;码：</span>
+								<input type="password" name="password" />
+							</div>
+							<div class="cont-btn clearfix">
+								<a href="javascript:;" class="btn-registry">注&nbsp;&nbsp;册</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script src="js/mui.min.js"></script>
+		<script src="http://zeptojs.com/zepto.min.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				swipeBack:false
+			});
+			mui.plusReady(function(){
+
+				mui('.mui-content').on('tap', '.tit-btn', function(){
+					for(var i = 0; i < mui('.tit-btn').length; i++){
+						mui('.tit-btn')[i].classList.toggle('active');
+					}
+					if(mui(this)[0].classList.contains('login')){
+						mui('.form-cont .cont')[0].style.transform = 'translateX(0)';
+					}else {
+						mui('.form-cont .cont')[0].style.transform = 'translateX(-50%)';
+					}
+				});				
+			});
+			mui('.mui-content').on('tap', '.btn-login', function(){
+				var usr = mui('.cont-login input[name=usr]')[0].value,
+					pwd = mui('.cont-login input[name=password]')[0].value;
+				console.log(usr, pwd);
+				mui.ajax({
+					url: 'http://10.10.81.101:5000/login/',
+					data: {
+						name: usr,
+						password: pwd
+					},
+					dataType:'JSON',//服务器返回json格式数据
+					async: true,
+					crossDomain: true,
+					type:'POST',//HTTP请求类型
+					timeout:5000,//超时时间设置为10秒；
+					headers:{'Content-Type':'application/json'},
+					processData: true,
+					success:function(data){
+						//服务器返回响应，根据响应结果，分析是否登录成功；
+						data = JSON.parse(data);
+						console.log(data.login);
+						if(data.login == 'ok'){
+							mui.toast('欢迎体验piece');
+							setTimeout(function(){
+								mui.back();
+							},1000);
+						}else if(data.login == 'nouser') {
+							mui.toast('用户不存在');
+						}else {
+							mui.toast('密码错误');
+						}
+					},
+					error:function(xhr,type,errorThrown){
+						//异常处理
+						console.log('fail');
+						console.log(type, errorThrown);
+					}
+				});
+			});
+			mui('.mui-content').on('tap', '.btn-registry', function(){
+					console.log('regist');
+					var usr = mui('.cont-registry input[name=usr]')[0].value,
+						pwd = mui('.cont-registry input[name=password]')[0].value;
+					console.log(usr, pwd);
+				mui.ajax({
+					url: 'http://10.10.81.101:5000/regist/',
+					data: {
+						'name': usr,
+						'password': pwd
+					},
+					dataType:'JSON',//服务器返回json格式数据
+					async: true,
+					crossDomain: true,
+					type:'POST',//HTTP请求类型
+					timeout:5000,//超时时间设置为10秒；
+					headers:{'Content-Type':'application/json'},
+					processData: true,
+					success:function(data){
+						//服务器返回响应，根据响应结果，分析是否登录成功；
+						data = JSON.parse(data);
+                		if(data.regist == 'ok'){
+                			mui.toast('注册成功');
+//              			localStorage.setItem('userId',)
+                			mui.back();
+                		}else{
+                			mui.toast('注册失败');
+                		}
+					},
+					error:function(xhr,type,errorThrown){
+						//异常处理
+						console.log('fail');
+						console.log(type, errorThrown);
+					}
+				});
+			});
+			
+		</script>
+	</body>
+
+</html>
