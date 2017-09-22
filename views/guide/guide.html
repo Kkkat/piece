@@ -9,8 +9,28 @@
 		<link rel="stylesheet" type="text/css" href="../../css/reset.css"/>
 		<style type="text/css">
 			html{font-size:15.625vw;}
-			/*body{background: url(../../temp);}*/
-			.header{display:flex;justify-content: space-between;padding:0 .2rem;}
+			.mui-content{width:100%;height:100vh;background-image:url(../../img/login-bg.jpg);background-size:cover;position:relative;overflow:hidden;}
+			.header{display:flex;justify-content: space-between;padding:1.6rem .3rem 1rem;}
+			.header h1{font-size:.36rem;}
+			.header .btn-explore{font-size:.28rem;color:#000000;line-height:.4rem;}
+			
+			.body ul{display:flex;justify-content:space-between;flex-wrap:wrap;padding:0 .3rem;}
+			.body ul li{width:1.6rem;height:1.6rem;background-color:rgba(0,0,0,.5);border-radius:100%;font-size:.36rem;text-align:center;line-height:1.6rem;background-size:100% auto;margin-bottom:.42rem;}
+			.body ul li.active .btn-label{background:rgba(254, 194, 2, .65);color:#000000;}
+			.body li .btn-label{color:#FFFFFF;display:block;width:100%;height:100%;border-radius:100%;}
+			.body ul li[data-id='28']{background-image:url(../../img/bg-label/bg-meal.png);}
+			.body ul li[data-id='29']{background-image:url(../../img/bg-label/bg-tech.png);}
+			.body ul li[data-id='30']{background-image:url(../../img/bg-label/bg-movie.png);}
+			.body ul li[data-id='31']{background-image:url(../../img/bg-label/bg-game.png);}
+			.body ul li[data-id='32']{background-image:url(../../img/bg-label/bg-dance.png);}
+			.body ul li[data-id='33']{background-image:url(../../img/bg-label/bg-bodybuild.png);}
+			.body ul li[data-id='34']{background-image:url(../../img/bg-label/bg-travel.png);}
+			.body ul li[data-id='35']{background-image:url(../../img/bg-label/bg-life.png);}
+			.body ul li[data-id='36']{background-image:url(../../img/bg-label/bg-sport.png);}
+			
+			.footer{position:absolute;bottom:1rem;left:.3rem;}
+			.footer p{font-size:.32rem;color:#595858;}
+			.footer p a{color:#595858;text-decoration:underline;}
 		</style>
 	</head>
 
@@ -19,25 +39,151 @@
 		<div class="mui-content">
 			<div class="header">
 				<h1>选择您感兴趣的标签</h1>
-				<a href="javascript:;" class="btn-explore">开始探索</a>
+				<a href="javascript:;" id="close" class="btn-explore">开始探索</a>
+			</div>
+			<div class="body">
+				<ul>
+					<!--<li class="item-meal active" data-id='4'>
+						<a href="javascript:;" class="btn-label">美食</a>
+					</li>
+					<li class="item-tech">
+						<a href="javascript:;" class="btn-label">科技</a>
+					</li>
+					<li class="item-movie">
+						<a href="javascript:;" class="btn-label">电影</a>
+					</li>
+					<li class="item-game">
+						<a href="javascript:;" class="btn-label">游戏</a>
+					</li>
+					<li class="item-dance">
+						<a href="javascript:;" class="btn-label">歌舞</a>
+					</li>
+					<li class="item-bodybuild">
+						<a href="javascript:;" class="btn-label">健身</a>
+					</li>
+					<li class="item-travel">
+						<a href="javascript:;" class="btn-label">旅游</a>
+					</li>
+					<li class="item-life">
+						<a href="javascript:;" class="btn-label">生活</a>
+					</li>
+					<li class="item-sports">
+						<a href="javascript:;" class="btn-label">体育</a>
+					</li>-->
+				</ul>
+			</div>
+			<div class="footer">
+				<p>已有账号？<a href="../../login.html" class="btn-login">立即登录</a></p>
 			</div>
 		</div>
 		<script src="../../js/mui.min.js"></script>
 		<script type="text/javascript">
-			mui.init();
+			mui.init({
+				swipeBack:false
+			});
 			mui.back = function() {};
+			var userId = localStorage.getItem('userId');
 			mui.plusReady(function() {
 				if(mui.os.ios){
 					plus.navigator.setFullscreen(true);
 				}
 				plus.navigator.closeSplashscreen();
+				
+				var labels = [];
+				mui.ajax({
+					url: 'http://10.10.81.101:5000/alllabel/',
+					dataType: 'JSON',
+					async: true,
+					crossDomain: true,
+					type:'GET',//HTTP请求类型
+					timeout:5000,//超时时间设置为10秒；
+					headers:{'Content-Type':'application/x-www-form-urlencoded'},
+					processData: true,
+					success:function(data){
+						//服务器返回响应，根据响应结果，分析是否登录成功；
+						data = JSON.parse(data);
+						var html = '';
+						data.label.forEach(function(e){
+							html += '<li data-id="' + e.id + '"><a href="javascript:;" class="btn-label">' + e.name + '</a></li>'
+						});
+						document.querySelector('.body ul').innerHTML = html;
+						
+					},
+					error:function(xhr,type,errorThrown){
+						//异常处理
+						console.log('fail');
+						console.log(type, errorThrown);
+					}
+				})
+				
 			});
-			//立即体验按钮点击事件
-			document.getElementById("close").addEventListener('tap', function(event) {
-				plus.storage.setItem("lauchFlag", "true");
-				plus.navigator.setFullscreen(false);
-				plus.webview.currentWebview().close();
-			}, false);
+
+			//标签点击事件
+			mui('.mui-content').on('tap', '.body ul li', function(){
+				mui(this)[0].classList.toggle('active');
+			});
+			//"开始探索"事件
+			mui('.mui-content').on('tap', '.btn-explore', function(){
+				
+				var labelList = [];
+				document.querySelectorAll('.body ul li.active').forEach(function(e){
+					labelList.push(e.getAttribute('data-id'));
+				});
+				console.log(labelList);
+//				localStorage.setItem('labelList', labelList);
+				mui.ajax({
+					url: 'http://10.10.81.101:5000/addlabel/',
+					data: {
+						userid: userId,
+						labellist: labelList
+					},
+					dataType: 'JSON',
+					async: true,
+					crossDomain: true,
+					type:'POST',//HTTP请求类型
+					timeout:5000,//超时时间设置为5秒；
+					headers:{'Content-Type':'application/json'},
+					processData: true,
+					success:function(data){
+						//服务器返回响应，根据响应结果，分析是否登录成功；
+						data = JSON.parse(data);
+						console.log(JSON.stringify(data));
+						if(data.addlabel == 'ok'){
+							console.log('ok');
+							var homePage = plus.webview.getWebviewById('views/index/home.html');
+							mui.fire(followPage,'refreshFollow');
+							plus.storage.setItem("lauchFlag", "true");
+							plus.navigator.setFullscreen(false);
+							plus.webview.getLaunchWebview().show();
+							
+						}else {
+							mui.toast('error');
+						}
+					},
+					error:function(xhr,type,errorThrown){
+						//异常处理
+						console.log('fail');
+						console.log(type, errorThrown);
+					}
+				})
+			});
+			//"立即登录"点击事件
+			var aniShow = "slide-in-left";
+			mui('.mui-content').on('tap', '.btn-login', function(){
+				var id = this.getAttribute("href");
+				var href = this.href;
+				
+				var webview_style = {
+					popGesture: "close"
+				}
+				
+				var extras = {};
+				var webview = plus.webview.create(this.href, id, webview_style, extras);
+//				mui.openWindow(this.href, id, webview_style, extras);
+				webview.addEventListener("loaded", function() {
+					webview.show(aniShow, 300);
+				});
+			});
 		</script>
 	</body>
 

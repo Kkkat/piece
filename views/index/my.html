@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" type="text/css" href="../../css/reset.css"/>
+		<link rel="stylesheet" href="../../css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css"/>
+		<style type="text/css">
+			html{font-size:15.625vw;}
+			body,.mui-content {background-color: #fff;color: #000;}
+			.mod-info {padding:0 .2rem;height:3.2rem;position:relative;background:url(../../img/banner.jpg);background-size:cover;}
+			.mod-info .info-act{position:absolute;right:.24rem;bottom:.2rem;}
+			.mod-info .info-act .icon-bianji{font-size:.42rem;color:#FEC202;}
+			.mod-info .info-basic {display: flex;}
+			/*.info-basic .info-avatar {display: flex;width:1.8rem;height:1.8rem;border-radius:100%;overflow: hidden;margin: 0 .2rem;}
+			.info-avatar img{width:100%;height:auto;}*/
+			.info-msg {position:absolute;bottom:.2rem;}
+			.info-msg .msg-tit h3{font-size:.5rem;color: #fff;margin-bottom:.24rem;}
+			.info-msg .msg-txt a{font-size:.21rem;color:#ffffff;}
+			.info-msg .msg-txt a em{font-size:.42rem;color:#FEC202;}
+			.mod-info .info-slo{margin-top: .24rem;margin-left:.28rem;}
+			.info-slo p{font-size:.28rem;color: #ffffff;margin-bottom:.1rem;}
+
+			.content .box-cont{margin: .2rem 0;padding: 0 .5rem;}
+			.content .box-cont .cont-list .cont-item{line-height:1rem;}
+			.content .box-cont .cont-list .cont-item .icon-cont{width:.8rem;font-size:.48rem;color: #000000;vertical-align:middle;margin-right:.2rem;}
+			.content .box-cont .cont-list .cont-item .icon-cont.icon-jishi{vertical-align:-2px;}
+			.content .box-cont .cont-list .cont-item .icon-cont.icon-shezhi{vertical-align:-3px;}
+			.content .box-cont .cont-list .cont-item .tit{font-size:.36rem;color:#000000;}
+		</style>
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<div class="mod-info">
+				<div class="info-logined" >
+					<div class="info-act">
+						<a class="icon-cont iconfont icon-bianji"></a>
+					</div>
+					<div class="info-basic">
+						<div class="info-msg">
+							<div class="msg-tit">
+								<h3></h3>
+							</div>
+							<div class="msg-txt">
+								<a href="../information/up.html" data-title-type="native"><em>1</em> 关注</a>
+								<!--<a><em>18w</em> 粉丝</a>-->
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="info-login" style="display: none;">
+					<a data-title-type="login" href="../../login.html">登录</a>
+				</div>
+			</div>
+			<div class="content">
+				<div class="box-cont">
+					<ul class="cont-list">
+						<li class="cont-item">
+							<a>
+								<i class="icon-cont iconfont icon-shoucang"></i>
+								<span class="tit">收藏</span>
+							</a>
+						</li>
+						<li class="cont-item">
+							<a>
+								<i class="icon-cont iconfont icon-xinfeng"></i>
+								<span class="tit">消息盒子</span>
+							</a>
+						</li>
+						<li class="cont-item">
+							<a>
+								<i class="icon-cont iconfont icon-shezhi"></i>
+								<span class="tit">设置</span>
+							</a>
+						</li>
+						<li class="cont-item">
+							<a>
+								<i class="icon-cont iconfont icon-jishi"></i>
+								<span class="tit">历史记录</span>
+							</a>
+						</li>
+						<li class="cont-item">
+							<a>
+								<i class="icon-cont iconfont icon-kefu"></i>
+								<span class="tit">神奇小法师</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			var aniShow = "slide-in-right";
+			//关于backbutton和menubutton两个按键的说明，在iOS平台不存在，故需隐藏
+			if(!mui.os.android) {
+				var span = document.getElementById("android-only")
+				if(span) {
+					span.style.display = "none";
+				}
+			}
+
+			mui.plusReady(function() {
+//				plus.navigator.setStatusBarBackground("#000000");
+				var userId = localStorage.getItem('userId');
+				mui.ajax({
+					url: 'http://10.10.81.101:5000/userinfo/',
+					data: {
+						userid: userId
+					},
+					dataType:'JSON',//服务器返回json格式数据
+					async: true,
+					crossDomain: true,
+					type:'GET',//HTTP请求类型
+					timeout:5000,//超时时间设置为10秒；
+					headers:{'Content-Type':'application/x-www-form-urlencoded'},
+					processData: true,
+					success:function(data){
+						//服务器返回响应，根据响应结果，分析是否登录成功；
+						data = JSON.parse(data);
+						console.log(JSON.stringify(data));
+						document.querySelector('.msg-tit h3').innerHTML = data.name;
+					},
+					error:function(xhr,type,errorThrown){
+						//异常处理
+						console.log('fail');
+						console.log(type, errorThrown);
+					}
+				});
+			});
+			window.addEventListener('refreshInfo',function(){
+				var userId = localStorage.getItem('userId');
+				mui.ajax({
+					url: 'http://10.10.81.101:5000/userinfo/',
+					data: {
+						userid: userId
+					},
+					dataType:'JSON',//服务器返回json格式数据
+					async: true,
+					crossDomain: true,
+					type:'GET',//HTTP请求类型
+					timeout:5000,//超时时间设置为10秒；
+					headers:{'Content-Type':'application/x-www-form-urlencoded'},
+					processData: true,
+					success:function(data){
+						//服务器返回响应，根据响应结果，分析是否登录成功；
+						data = JSON.parse(data);
+						console.log(JSON.stringify(data));
+						document.querySelector('.msg-tit h3').innerHTML = data.name;
+					},
+					error:function(xhr,type,errorThrown){
+						//异常处理
+						console.log('fail');
+						console.log(type, errorThrown);
+					}
+				});
+			})
+			mui('.mui-content').on('tap', 'a', function() {
+				var id = this.getAttribute("href");
+				var href = this.href;
+				
+				var webview_style = {
+					popGesture: "close"
+				}
+				
+				var extras = {};
+
+				var titleType = this.getAttribute("data-title-type");
+
+				if(titleType == "native") {
+					
+					webview_style.statusbar = {background: '#F7F7F7'};
+					var webview = plus.webview.create(href, id, webview_style);
+
+					webview.addEventListener("loaded", function() {
+						webview.show(aniShow, 300, null, extras);
+					})
+
+				} else {
+
+					var webview = plus.webview.create(this.href, id, webview_style, extras);
+					webview.addEventListener("loaded", function() {
+						webview.show(aniShow, 300);
+					});
+				}
+			});
+			mui.init({
+				swipeBack: false,
+				keyEventBind: {
+					backbutton: false //关闭back按键监听
+				}
+			});
+			
+			
+		</script>
+	</body>
+
+</html>

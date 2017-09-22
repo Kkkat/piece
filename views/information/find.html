@@ -6,9 +6,12 @@
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/reset.css"/>
 		<style type="text/css">
 			html{font-size:15.625vw;}
+			.mui-bar .mui-icon-search{color:#000000;font-size:32px;padding:0;line-height:44px;}
+			.mui-bar .mui-action-back{color:#515151;font-size:32px;padding:0;line-height:44px;}
 			.mui-bar-nav{box-shadow: none;-webkit-box-shadow: none;border-bottom:1px solid #CDCDCD;}
 			.mod-label{width:100%;height:1.4rem;background:#ffffff;border-bottom:1px solid #cdcdcd;}
 			.mod-label .label-list{display:flex;height:100%;}
@@ -25,12 +28,13 @@
 			.find-cont .video-item {width:100%;box-sizing:border-box;padding:.2rem;background:#FFFFFF;border-top:1px solid #CDCDCD;border-bottom:1px solid #CDCDCD;margin-top:.24rem;}
 			.video-item .info-pic{float:left;}
 			.video-item .info-pic img{width:.84rem;height:auto;border-radius:100%;border:1px solid #CDCDCD;}
-			.video-item .info-txt p{font-size:.32rem;color:#000000;line-height:.84rem;margin-left:.96rem;}
+			.video-item .info-txt p{font-size:.3rem;color:#000000;line-height:.84rem;margin-left:.96rem;}
 			
 			.video-main{position:relative;}
+			.video-main video{background:#000000;width:100%;}
 			.video-main .dur{position:absolute;font-size:.24rem;color:#FFFFFF;right:.2rem;bottom:.2rem;padding:.2rem;background-color:rgba(0,0,0,0.5);border-radius:.2rem;}
 			
-			.item-fd .tit h2{font-size:.36rem;float:left;}
+			.item-fd .tit h2{font-size:.28rem;}
 			.item-fd .tit .label{float:left;font-size:.2rem;padding:.05rem;background:#fec202;color:#FFFFFF;border-radius:.1rem;}
 		</style>
 	</head>
@@ -83,101 +87,68 @@
 				</ul>
 			</div>
 			<div class="find-cont">
-				<ul class="video-list">
-					<li class="video-item">
-						<div class="item-hd">
-							<div class="hd-info clearfix">
-								<div class="info-pic">
-									<img src="../../temp/images/rishiji.png"/>
-								</div>
-								<div class="info-txt">
-									<p>日食记</p>
-								</div>
-							</div>
-						</div>
-						<div class="item-bd">
-							<div class="video-main">
-								<video id="video" webkit-playsinline playsinline controls="controls"  preload="auto" poster="http://download.dcloud.net.cn/FastAndroid-mini.jpg" width="100%" height="auto">
-									<source src="http://download.dcloud.net.cn/FastAndroid-mini.m4v" type="video/mp4">
-									<source src="http://download.dcloud.net.cn/FastAndroid-mini.webm" type="video/webm">
-									<source src="http://download.dcloud.net.cn/FastAndroid-mini.ogv" type="video/ogg">
-									<source src="http://download.dcloud.net.cn/FastAndroid-mini.mp4">
-								</video>
-								<p class="dur">02:00</p>
-							</div>
-						</div>
-						<div class="item-fd">
-							<div class="tit clearfix">
-								<h2>【牛肉面】</h2>
-								<span class="label">美食</span>
-							</div>
-						</div>
-					</li>
-					<li class="video-item">
-						<div class="item-hd">
-							<div class="hd-info clearfix">
-								<div class="info-pic">
-									<img src="../../temp/images/rishiji.png"/>
-								</div>
-								<div class="info-txt">
-									<p>日食记</p>
-								</div>
-							</div>
-						</div>
-						<div class="item-bd">
-							<div class="video-main">
-								<video id="video" webkit-playsinline playsinline controls="controls"  preload="auto" poster="http://download.dcloud.net.cn/FastAndroid-mini.jpg" width="100%" height="auto">
-									<source src="http://download.dcloud.net.cn/FastAndroid-mini.m4v" type="video/mp4">
-									<source src="http://download.dcloud.net.cn/FastAndroid-mini.webm" type="video/webm">
-									<source src="http://download.dcloud.net.cn/FastAndroid-mini.ogv" type="video/ogg">
-									<source src="http://download.dcloud.net.cn/FastAndroid-mini.mp4">
-								</video>
-								<p class="dur">02:00</p>
-							</div>
-						</div>
-						<div class="item-fd">
-							<div class="tit clearfix">
-								<h2>【牛肉面】</h2>
-								<span class="label">美食</span>
-							</div>
-						</div>
-					</li>
-					<li class="video-item">
-						<div class="item-hd">
-							<div class="hd-info clearfix">
-								<div class="info-pic">
-									<img src="../../temp/images/rishiji.png"/>
-								</div>
-								<div class="info-txt">
-									<p>日食记</p>
-								</div>
-							</div>
-						</div>
-						<div class="item-bd">
-							<div class="video-main">
-								<video id="video" webkit-playsinline playsinline controls="controls"  preload="auto" poster="http://download.dcloud.net.cn/FastAndroid-mini.jpg" width="100%" height="auto">
-									<source src="http://download.dcloud.net.cn/FastAndroid-mini.m4v" type="video/mp4">
-									<source src="http://download.dcloud.net.cn/FastAndroid-mini.webm" type="video/webm">
-									<source src="http://download.dcloud.net.cn/FastAndroid-mini.ogv" type="video/ogg">
-									<source src="http://download.dcloud.net.cn/FastAndroid-mini.mp4">
-								</video>
-								<p class="dur">02:00</p>
-							</div>
-						</div>
-						<div class="item-fd">
-							<div class="tit clearfix">
-								<h2>【牛肉面】</h2>
-								<span class="label">美食</span>
-							</div>
-						</div>
-					</li>
+				<ul class="video-list" id="video-list">
+		
 				</ul>
 			</div>
 		</div>
 		
 		<script src="../../js/mui.min.js"></script>
 		<script type="text/javascript">
-			mui.init()
+			mui.init();
+			mui.plusReady(function(){
+				mui.ajax({
+					url: 'http://10.10.81.101:5000/rand/',
+					dataType: 'JSON',
+					type: 'GET',
+					timeout: 50000,
+					headers: {'Content-Type':'application/x-www-form-urlencoded'},
+					success:function(data) {
+						var data_arr = JSON.parse(data).info;
+						var html = '';
+						for(var i=0; i < data_arr.length; i++) {
+							html += '<li class="video-item">' + 
+										'<div class="item-hd">' + 
+											'<div class="hd-info clearfix">' + 
+												'<div class="info-pic">' + 
+													'<img src="http://10.10.81.101/' + data_arr[i].avater + '"/>' + 
+												'</div>' + 
+												'<div class="info-txt">' + 
+													'<p>' + data_arr[i].upper + '</p>' + 
+												'</div>' + 
+											'</div>' + 
+										'</div>' + 
+										'<div class="item-bd">' + 
+											'<div class="video-main">' + 
+												'<video webkit-playsinline playsinline controls="controls"  preload="auto" poster="http://' + data_arr[i].pic + '">' + 
+													'<source src="http://10.10.81.101/' + data_arr[i].mov + '" type="video/mp4">' + 	
+												'</video>' + 
+												'<p class="dur">' + getTime(data_arr[i].durition) + '</p>' + 
+											'</div>' + 
+										'</div>' + 
+										'<div class="item-fd">' + 
+											'<div class="tit clearfix">' + 
+												'<h2>' + data_arr[i].title + '</h2>' + 
+//												'<span class="label">美食</span>' + 
+											'</div>' + 
+										'</div>' + 
+									'</li>';	
+						}
+						document.getElementById('video-list').innerHTML = html;
+					},
+					error:function(xhr,type,errorThrown){
+						console.log(type, errorThrown);
+					}
+				});
+			});
+			function getTime(dur){
+				var m = parseInt(dur/60),
+					s = dur%60;
+				if(s < 10) {
+					s = '0' + s;
+				}
+				return m + ':' + s;
+			}
 		</script>
 	</body>
 

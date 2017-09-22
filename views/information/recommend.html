@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css"/>
+		<style type="text/css">
+			html{font-size:15.625vw;}
+			.mui-bar .mui-action-back{color:#515151;font-size:32px;padding:0;line-height:44px;}
+			
+			.mod-video{height:5rem;}
+			.mod-video video{position:absolute;width:5.3rem;left:50%;transform:translateX(-50%);top:2.13rem;z-index:1;border-radius:18px;background:#000000;}
+			.mod-video video source{width:5.3rem;}
+			
+			.btn-list{display:flex;margin-top:1.2rem;}
+			.btn-list li{flex:1;display:flex;flex-direction:column;justify-content:center;}
+			.btn-list li .icon-btn{display:block;width:1.4rem;height:1.4rem;background-size:100% auto;margin:0 auto;}
+			.btn-list li .item-txt p{font-size:.28rem;color:#000000;margin-top:.16rem;text-align:center;}
+			.icon-relax{background-image:url(../../img/btn-icon/icon-relax.png);}
+			.icon-eating{background-image:url(../../img/btn-icon/icon-eating.png);}
+			.icon-bus{background-image:url(../../img/btn-icon/icon-bus.png);}
+			.icon-tv{position:absolute;width:5.67rem;height:3.81rem;background-size:100% auto;background-image:url(../../img/tv.png);background-repeat:no-repeat;left:50%;transform:translateX(-50%);top:2rem;}
+			.tips{text-align:center;font-size:.24rem;color:#000000;margin-top:.8rem;}
+			.tips sub{color:#ff1e1e;}
+			.btn:active{transform:scale(.95);}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">场景化推送</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mod-video">
+				<div class="video-main" id="video-main">
+					<video id="video" webkit-playsinline playsinline controls="controls"  preload="auto" poster="http://download.dcloud.net.cn/FastAndroid-mini.jpg" width="100%" height="auto">
+						<source id="video-source" src="http://download.dcloud.net.cn/FastAndroid-mini.m4v" type="video/mp4">
+					</video>
+				</div>
+				<div class="video-tv">
+					<i class="icon-tv"></i>
+				</div>
+			</div>
+			<div>
+				<ul class="btn-list">
+					<li>
+						<div class="btn" data-time="3">
+							<div class="item-btn">
+								<i class="icon-btn icon-relax"></i>
+							</div>
+							<div class="item-txt">
+								<p>休息 3 分钟</p>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="btn" data-time="5">
+							<div class="item-btn">
+								<i class="icon-btn icon-eating"></i>
+							</div>
+							<div class="item-txt">
+								<p>饭前 5 分钟</p>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="btn" data-time="7">
+							<div class="item-btn">
+								<i class="icon-btn icon-bus"></i>
+							</div>
+							<div class="item-txt">
+								<p>等车 7 分钟</p>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<div class="tips">
+					<p><sub>*</sub> 我们会根据场景和时间，给您推荐合适的视频</p>
+				</div>
+			</div>
+		</div>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function(){
+				getRecommendVideo(3);
+				mui('.mui-content').on('tap', '.btn', function(){
+					var time = this.getAttribute('data-time');
+					getRecommendVideo(time);
+				});
+			});
+			
+			function getRecommendVideo(time) {
+				mui.ajax({
+					url: 'http://10.10.81.101:5000/features/',
+					data: {
+						time: time
+					},
+					dataType: 'JSON',
+					type: 'post',
+					timeout: 50000,
+					headers: {'Content-Type':'application/json'},
+					success:function(data) {
+						data = JSON.parse(data);
+						var video = data[0];
+						var html = '<video id="video" webkit-playsinline playsinline controls="controls"  preload="auto" poster="http://' + video.pic + '">' + 
+										'<source id="video-source" src="http://10.10.81.101/' + video.mov + '" type="video/mp4">' + 
+									'</video>';
+						document.getElementById('video-main').innerHTML = html;
+					},
+					error:function(xhr,type,errorThrown){
+						console.log(type, errorThrown);
+					}
+				});
+			}
+		</script>
+	</body>
+
+</html>

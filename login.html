@@ -11,8 +11,8 @@
 			html{font-size:15.625vw;}
 			.mui-content{width:100%;height:100vh;background-image:url(img/login-bg.jpg);background-size:cover;position:relative;overflow:hidden;}
 			.mui-content .mui-action-back{font-size:.36rem;color:#838383;position:absolute;bottom:.54rem;left:.33rem;}
-			.mui-content .piece{position:absolute;width:3rem;height:1.12rem;background-image:url(img/piece.png);background-size:100% auto;top:1.08rem;left:.33rem;}
-			.mui-content .form-list{position:absolute;top:3.3rem;width:100%;box-sizing:border-box;}
+			.mui-content .piece{position:absolute;width:3.14rem;height:1.32rem;background-image:url(img/cheer.png);background-size:100% auto;top:1.08rem;left:.33rem;}
+			.mui-content .form-list{position:absolute;top:4rem;width:100%;box-sizing:border-box;}
 			.form-tit{padding:0 .4rem;}
 			.form-tit a{font-size:.42rem;color:#313131;font-weight: bold;position:absolute;}
 			.form-tit .registry{right:.4rem;}
@@ -45,11 +45,11 @@
 						<div class="cont-login">
 							<div class="usr">
 								<span>用户名：</span>
-								<input type="text" name="usr" placeholder="输入您的用户名" value="hello" />
+								<input type="text" name="usr" placeholder="输入您的用户名" value="" />
 							</div>
 							<div class="pwd">
 								<span>密&nbsp;&nbsp;&nbsp;&nbsp;码：</span>
-								<input type="password" name="password"  value="123"/>
+								<input type="password" name="password" placeholder="请输入您的密码"  value=""/>
 							</div>
 							<div class="cont-btn clearfix">
 								<a href="javascript:;" class="btn-login">登&nbsp;&nbsp;录</a>
@@ -62,7 +62,7 @@
 							</div>
 							<div class="pwd">
 								<span>密&nbsp;&nbsp;&nbsp;&nbsp;码：</span>
-								<input type="password" name="password" />
+								<input type="password" name="password" placeholder="请输入您的密码" />
 							</div>
 							<div class="cont-btn clearfix">
 								<a href="javascript:;" class="btn-registry">注&nbsp;&nbsp;册</a>
@@ -77,8 +77,13 @@
 		<script src="http://zeptojs.com/zepto.min.js"></script>
 		<script type="text/javascript">
 			mui.init({
-				swipeBack:false
+				swipeBack:false,
+				beforeback:function(){
+					console.log('hello');
+				}
 			});
+//			var userId = localStorage.getItem('userId');
+//			if(userId){plus.webview.currentWebview().close();}
 			mui.plusReady(function(){
 
 				mui('.mui-content').on('tap', '.tit-btn', function(){
@@ -112,11 +117,22 @@
 					success:function(data){
 						//服务器返回响应，根据响应结果，分析是否登录成功；
 						data = JSON.parse(data);
-						console.log(data.login);
-						if(data.login == 'ok'){
+						console.log(JSON.stringify(data));
+						if(data.userid){
 							mui.toast('欢迎体验piece');
+							localStorage.setItem('userId',data.userid);
+							var infoPage = plus.webview.getWebviewById('views/index/my.html'),
+								homePage = plus.webview.getWebviewById('views/index/home.html');
+							if(infoPage){
+								mui.fire(infoPage, 'refreshInfo');
+								mui.fire(homePage, 'refreshVideoInfo');
+							}
 							setTimeout(function(){
-								mui.back();
+								if(data.label == 'no') {
+									mui.openWindow('views/guide/guide.html');
+								}else{
+									plus.webview.getLaunchWebview().show();
+								}
 							},1000);
 						}else if(data.login == 'nouser') {
 							mui.toast('用户不存在');
@@ -152,12 +168,16 @@
 					success:function(data){
 						//服务器返回响应，根据响应结果，分析是否登录成功；
 						data = JSON.parse(data);
-                		if(data.regist == 'ok'){
+                		if(data.userid){
                 			mui.toast('注册成功');
-//              			localStorage.setItem('userId',)
-                			mui.back();
+                			localStorage.setItem('userId',data.userid);
+                			var infoPage = plus.webview.getWebviewById('views/index/my.html');
+							if(infoPage){
+								mui.fire(infoPage, 'refreshInfo');
+							}
+							mui.openWindow('views/guide/guide.html');
                 		}else{
-                			mui.toast('注册失败');
+                			mui.toast('用户已存在');
                 		}
 					},
 					error:function(xhr,type,errorThrown){

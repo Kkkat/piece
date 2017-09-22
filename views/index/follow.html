@@ -8,32 +8,41 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
 		<link rel="stylesheet" href="../../css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/reset.css"/>
 		<style>
 			html{font-size:15.625vw;}
 			body{background:#E5E5E5;}
 			
 			.dev-item{width:100%;background:#FFFFFF;box-sizing:border-box;border-top:1px solid #CDCDCD;border-bottom:1px solid #CDCDCD;margin-top:.3rem;}
-			.dev-item .hd-up-info{display: flex;padding:.2rem .2rem 0 .2rem;}
+			.dev-item:last-child{margin-bottom:.3rem;}
+			.dev-item .hd-up-info{display: flex;padding:.2rem .2rem .1rem .2rem;}
 			.dev-item .hd-up-info .info-pic img{width:.84rem;height:auto;border-radius:100%;border:1px solid #CDCDCD;}
 			.dev-item .hd-up-info .info-txt{display:flex;flex-direction: column;justify-content: center;margin-left:.12rem;}
 			.dev-item .hd-up-info .info-txt h3{font-size:.3rem;}
 			.dev-item .hd-up-info .info-txt p{font-size:.24rem;margin-top:.1rem;}
 			
-			.dev-item .hd-video-info h4{font-size:.3rem;padding: 0 .2rem;}
+			.dev-item .hd-video-info h4{font-size:.28rem;padding: 0 .2rem;}
 			
-			.dev-item .item-bd{margin-top:.1rem;padding:0 .3rem 0 .3rem;}
+			.dev-item .item-bd{margin-top:.2rem;margin-bottom:-.1rem;}
+			.dev-item .item-bd video{background:#000000;}
 			
-			.dev-item .item-fd .item-act{display:flex;width:100%;height:1rem;border-top:1px solid #CDCDCD;}
-			.dev-item .item-fd .item-act a{flex:1;display:flex;justify-content:center;align-items:center;color:#000000;line-height:0;font-size:.3rem;}
+			.dev-item .item-fd .item-act{display:flex;width:100%;height:1rem;}
+			.dev-item .item-fd .item-act .iconfont{font-size:.36rem;}
+			.dev-item .item-fd .item-act a{flex:1;display:flex;justify-content:center;align-items:center;color:#000000;line-height:0;font-size:.25rem;}
 			.dev-item .item-fd .item-act a span{margin-left:.1rem;}
 		</style>
 	</head>
 	<body>
+		<!--<header class="mui-bar mui-bar-nav">
+		    <a href="javascript:;" class="mui-pull-left mui-avatar"></a>
+		    <h1 class="mui-title">标题</h1>
+		    <a href="javascript:;" class="mui-icon mui-icon-bars mui-icon-right-nav mui-pull-right"></a>
+		</header>-->
 		<div class="mui-content">
 			<div class="follow-cont">
 				<ul class="dev-list">
-					<li class="dev-item">
+					<!--<li class="dev-item">
 						<div class="item-hd">
 							<div class="hd-up-info">
 								<div class="info-pic">
@@ -59,108 +68,105 @@
 						<div class="item-fd">
 							<div class="item-act">
 								<a href="javascript:;">
-									<i class="mui-icon mui-icon-star"></i>
+									<i class="iconfont icon-shoucang1"></i>
 									<span>12</span>
 								</a>
 								<a href="javascript:;">
-									<i class="mui-icon mui-icon-chatboxes"></i>
+									<i class="iconfont icon-xiaoxi"></i>
 									<span>23</span>
 								</a>
 								<a href="javascript:;">
-									<i class="mui-icon mui-icon-upload"></i>
+									<i class="iconfont icon-fenxiang"></i>
 									<span>4</span>
 								</a>
 							</div>
 						</div>
-					</li>
-					<li class="dev-item">
-						<div class="item-hd">
-							<div class="hd-up-info">
-								<div class="info-pic">
-									<img src="../../temp/images/rishiji.png"/>
-								</div>
-								<div class="info-txt">
-									<h3>日食记</h3>
-									<p>发布时间：<em>2017-8-8</em></p>
-								</div>
-							</div>
-							<div class="hd-video-info">
-								<h4>【牛肉面】</h4>
-							</div>
-						</div>
-						<div class="item-bd">
-							<video id="video" webkit-playsinline playsinline controls="controls"  preload="auto" poster="http://download.dcloud.net.cn/FastAndroid-mini.jpg" width="100%" height="auto">
-								<source src="http://download.dcloud.net.cn/FastAndroid-mini.m4v" type="video/mp4">
-								<source src="http://download.dcloud.net.cn/FastAndroid-mini.webm" type="video/webm">
-								<source src="http://download.dcloud.net.cn/FastAndroid-mini.ogv" type="video/ogg">
-								<source src="http://download.dcloud.net.cn/FastAndroid-mini.mp4">
-							</video>
-						</div>
-						<div class="item-fd">
-							<div class="item-act">
-								<a href="javascript:;">
-									<i class="mui-icon mui-icon-star"></i>
-									<span>12</span>
-								</a>
-								<a href="javascript:;">
-									<i class="mui-icon mui-icon-chatboxes"></i>
-									<span>23</span>
-								</a>
-								<a href="javascript:;">
-									<i class="mui-icon mui-icon-upload"></i>
-									<span>4</span>
-								</a>
-							</div>
-						</div>
-					</li>
-					<li class="dev-item">
-						<div class="item-hd">
-							<div class="hd-up-info">
-								<div class="info-pic">
-									<img src="../../temp/images/rishiji.png"/>
-								</div>
-								<div class="info-txt">
-									<h3>日食记</h3>
-									<p>发布时间：<em>2017-8-8</em></p>
-								</div>
-							</div>
-							<div class="hd-video-info">
-								<h4>【牛肉面】</h4>
-							</div>
-						</div>
-						<div class="item-bd">
-							<video id="video" webkit-playsinline playsinline controls="controls"  preload="auto" poster="http://download.dcloud.net.cn/FastAndroid-mini.jpg" width="100%" height="auto">
-								<source src="http://download.dcloud.net.cn/FastAndroid-mini.m4v" type="video/mp4">
-								<source src="http://download.dcloud.net.cn/FastAndroid-mini.webm" type="video/webm">
-								<source src="http://download.dcloud.net.cn/FastAndroid-mini.ogv" type="video/ogg">
-								<source src="http://download.dcloud.net.cn/FastAndroid-mini.mp4">
-							</video>
-						</div>
-						<div class="item-fd">
-							<div class="item-act">
-								<a href="javascript:;">
-									<i class="mui-icon mui-icon-star"></i>
-									<span>12</span>
-								</a>
-								<a href="javascript:;">
-									<i class="mui-icon mui-icon-chatboxes"></i>
-									<span>23</span>
-								</a>
-								<a href="javascript:;">
-									<i class="mui-icon mui-icon-upload"></i>
-									<span>4</span>
-								</a>
-							</div>
-						</div>
-					</li>
+					</li>-->
+					
 				</ul>
 			</div>
 		</div>
+		
 	</body>
 	<script src="../../js/mui.min.js"></script>
 	<script>
 		mui.init({
-			swipeBack:false //关闭右滑关闭功能
+			swipeBack:false, //关闭右滑关闭功能
+			statusbar: '#ffffff'
 		});
+		
+		mui.plusReady(function(){
+			getFollow();
+			
+		});
+		function getFollow() {
+			var userId = localStorage.getItem('userId');
+			console.log(userId);
+			
+			mui.ajax({
+				url: 'http://10.10.81.101:5000/dynamic/',
+				data: {
+					userid: userId
+				},
+				dataType: 'JSON',
+				type: 'post',
+				timeout: 50000,
+				headers: {'Content-Type':'application/json'},
+				success:function(data) {
+					data = JSON.parse(data);
+					var arr = data.info;
+					var html = '';
+					for(var i = 0; i < arr.length; i++) {
+						var time = new Date(arr[i].date);
+						var pTime = time.getFullYear() + '-' + (time.getMonth()+1) + '-' + time.getDate() + ' ' + time.getHours() + ':' + time.getMinutes();
+						html += '<li class="dev-item">' + 
+									'<div class="item-hd">' + 
+										'<div class="hd-up-info">' +
+										'<div class="info-pic">' +
+												'<img src="http://10.10.81.101/' + arr[i].avater + '"/>' +
+											'</div>' +
+											'<div class="info-txt">' +
+												'<h3>' + arr[i].upper +  '</h3>' +
+												'<p><em>' + pTime + '</em></p>' +
+											'</div>' +
+										'</div>' +
+										'<div class="hd-video-info">' +
+											'<h4>' + arr[i].title + '</h4>' +
+										'</div>' +
+									'</div>' +
+									'<div class="item-bd">' +
+										'<video id="video" webkit-playsinline playsinline controls="controls"  preload="auto" poster="http://' + arr[i].pic + '" width="100%" height="auto">' +
+											'<source src="http://10.10.81.101/' + arr[i].mov + '" type="video/mp4">' +
+									'</div>' +
+									'<div class="item-fd">' +
+										'<div class="item-act">' +
+											'<a href="javascript:;">' +
+												'<i class="iconfont icon-shoucang1"></i>' +
+												'<span>' + rd(20,100) +'</span>' +
+											'</a>' +
+											'<a href="javascript:;">' +
+												'<i class="iconfont icon-xiaoxi"></i>' +
+												'<span>' + rd(20,50) + '</span>' +
+											'</a>' +
+											'<a href="javascript:;">' +
+												'<i class="iconfont icon-fenxiang"></i>' +
+												'<span>' + rd(10,30) +'</span>' +
+											'</a>' +
+										'</div>' +
+									'</div>' +
+								'</li>'
+					}
+					mui('.dev-list')[0].innerHTML = html;
+				},
+				error:function(xhr,type,errorThrown){
+					console.log(type, errorThrown);
+				}
+			});
+		}
+		function rd(n,m){
+		    var c = m-n+1;  
+		    return Math.floor(Math.random() * c + n);
+		}
+		window.addEventListener('refreshFollow', getFollow);
 	</script>
 </html>

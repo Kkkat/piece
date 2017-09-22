@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css"/>
+		<style type="text/css">
+			html{font-size:15.625vw;}
+			.mui-bar .mui-action-back{color:#515151;font-size:32px;padding:0;line-height:44px;}
+			.mui-content ul li{display:flex;height:1.2rem;padding:0 .18rem;align-items: center;border-bottom:1px solid #CDCDCD;margin-top:.2rem;}
+			.cont-pic{flex:1;}
+			.cont-info{flex:3;}
+			.cont-act{flex:.5;}
+			.cont-pic img{width:1rem;height:1rem;border-radius:100%;border:1px solid #CCCCCC;}
+			.cont-info h2{font-size:.32rem;margin-bottom:.18rem;}
+			.cont-info p{font-size:.21rem;}
+			.cont-act i{font-size:.42rem;display:flex;align-items:center;justify-content:center;}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">关注的人</h1>
+		</header>
+		<div class="mui-content">
+			<ul>
+				<!--<li>
+					<div class="cont-pic">
+						<img src="../../temp/images/rishiji.png"/>
+					</div>
+					<div class="cont-info">
+						<h2>日食记</h2>
+						<p>最近更新xx视频</p>
+					</div>
+					<div class="cont-act">
+						<i class="iconfont icon-gengduo1"></i>
+					</div>
+				</li>
+				<li>
+					<div class="cont-pic">
+						<img src="../../temp/images/rishiji.png"/>
+					</div>
+					<div class="cont-info">
+						<h2>日食记</h2>
+						<p>最近更新xx视频</p>
+					</div>
+					<div class="cont-act">
+						<i class="iconfont icon-gengduo1"></i>
+					</div>
+				</li>-->
+			</ul>
+		</div>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function(){
+				var userId = localStorage.getItem('userId');
+				console.log(userId);
+				mui.ajax({
+					url: 'http://10.10.81.101:5000/follow/',
+					data: {
+						userid: userId
+					},
+					dataType: 'JSON',
+					type: 'post',
+					timeout: 50000,
+					headers: {'Content-Type':'application/json'},
+					success:function(data) {
+						data = JSON.parse(data);
+						console.log(JSON.stringify(data));
+						var arr = data.info;
+						var html = '';
+						for(var i = 0; i < arr.length; i++) {
+							html += '<li>' + 
+										'<div class="cont-pic">' + 
+											'<img src="http://10.10.81.101/' + arr[i].avater +'"/>' + 
+										'</div>' + 
+										'<div class="cont-info">' + 
+											'<h2>' + arr[i].name + '</h2>' +
+											'<p>最近更新' + rd(1,5) +'个视频</p>' + 
+										'</div>' +
+										'<div class="cont-act">' + 
+											'<i class="iconfont icon-gengduo1"></i>' + 
+										'</div></li>';
+						}
+						mui('.mui-content ul')[0].innerHTML = html;
+					},
+					error:function(xhr,type,errorThrown){
+						console.log(type, errorThrown);
+					}
+				});
+			});
+			function rd(n,m){
+			 	var c = m-n+1;  
+				return Math.floor(Math.random() * c + n);
+			}
+		</script>
+	</body>
+
+</html>

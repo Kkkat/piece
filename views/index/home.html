@@ -4,39 +4,45 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<link rel="stylesheet" type="text/css" href="../../css/reset.css"/>
 		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css"/>
 		<style type="text/css">
-			html{font-size: 15.625vw;}
-			body {background: #e5e5e5;}
-	    	.mod-card {width: 100%;height: 100vh;overflow:hidden;}
+			html{font-size: 15.625vw;font-family: 'wang';}
+			body {background: #e5e5e5;overflow:hidden;}
+	    	.mod-card {width: 100%;height:100vh;overflow:hidden;}
 	    	.mod-card .card-list{width:100%;height:100%;transition:all .5s;}
 	    	.mod-card .card-list .card-item{width:100%;height:90vh;margin: 10vh 0 5vh 0;background-color:#FFFFFF;box-shadow: 0 .02rem .2rem rgba(130,130,130,0.5);position: relative;}
 	    	.mod-card .card-list .card-item:first-child{margin: 5vh 0;}
 	    	.card-item .mod-label {position: absolute;width: 100%;}
+	    	.mod-label .label-collect a{position:absolute;font-size:.32rem;color:#000000;top:.3rem;left:.2rem;}
 	    	.mod-label .label-sort {position: absolute;top: .1rem;left: .1rem;}
 	    	.mod-label .label-sort span{padding: .05rem .1rem;font-size:.16rem;color:#FFFFFF;background:#fec202;border-radius:.16rem;}
 	    	.mod-label .label-source {position: absolute;top:.25rem;right: 0;width: 1.22rem;height: .46rem;line-height: .46rem;background-image: url(../../img/label.png);background-size: 100% auto;}
 	    	.mod-label .label-source p{font-size: .18rem;text-indent: .36rem;color: #FFFFFF;}
 	    	.mod-info {text-align:center;padding: .4rem 0 .2rem 0;}
-	    	.mod-info .info-pic{width: 1rem;height: 1rem;border-radius: 100%;overflow: hidden;margin: 0 auto .15rem auto;border: 1px solid rgba(43, 43, 43, 0.5);}
+	    	.mod-info .info-pic{width: 1rem;height: 1rem;border-radius: 100%;margin: 0 auto .2rem auto;border: 1px solid rgba(43, 43, 43, 0.5);position:relative;}
+	    	.mod-info .info-pic .icon-add{position:absolute;right:0;top:-.1rem;font-weight:bold;color:#fec202;}
 	    	.info-pic img{width:100%;height: auto;border-radius: 100%;}
-	    	.mod-info .info-txt .tit {font-size: .3rem;margin-bottom: .1rem;}
+	    	.mod-info .info-txt .tit {font-size: .32rem;margin-bottom: .16rem;}
 	    	.mod-info .info-txt span{font-size: .2rem;}
 	    	.mod-info .info-txt span:first-of-type {margin-right: .2rem;}
 	    	.mod-info .info-txt span em{font-size:.36rem;color: #fec202;}
-	    	.mod-video .video-main video{width:100%;height: auto;}
-	    	.mod-video .video-info {margin: 0 .1rem;}
-	    	.mod-video .video-info .info-tit{float: left;margin-top:.1rem;}
-	    	.mod-video .video-info .info-tit a {font-size:.3rem;color: #000000;}
-	    	.mod-video .video-info .info-act {float: right;}
+	    	.mod-video .video-main video{width:100%;height:auto;background:#000000;}
+	    	.mod-video .video-info {margin: 0 .3rem;}
+	    	.mod-video .video-info .info-tit{margin-top:.2rem;}
+	    	.mod-video .video-info .info-tit a {display:block;font-size:.28rem;color:#000000;line-height:1.5;/*max-width:100%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;*/}
+	    	/*.mod-video .video-info .info-act {float: right;margin-top:.1rem;}
 	    	.video-info .info-act .act-item{float: left;margin-left:.3rem;}
-	    	.video-info .info-act .act-item .mui-icon {font-size:.42rem;color: #000000;}
-	    	.video-info .info-act .act-item p{font-size:.2rem;color: #000000;text-align: center;margin-bottom:0;}
-	    	.video-info .info-txt{float: left;margin-top:.1rem;padding:0 .1rem;}
-	    	.video-info .info-txt p{font-size:.24rem;line-height: 1.4;color: #000000;}
-	    	.video-info .info-txt p em{font-weight: bold;}
+	    	.video-info .info-act .act-item .iconfont {font-size:.42rem;color: #000000;}
+	    	.video-info .info-act .act-item p{font-size:.2rem;color: #000000;text-align: center;margin-bottom:0;}*/
+	    	.video-info .info-txt{margin-top:.2rem;}
+	    	.video-info .info-txt p{font-size:.24rem;line-height: 1.4;color: #7e7e7e;}
+	    	/*.video-info .info-txt p em{font-weight:bold;text-align:right;}*/
+	    	.video-info .info-txt .comment{text-align:right;}
 		</style>
 	</head>
 	<body>
@@ -45,13 +51,17 @@
 				<ul class="card-list" style="transform:translateY(0);">
 					<li class="card-item">
 						<div class="mod-label">
+							<div class="label-collect">
+								<a class="iconfont icon-shoucang1"></a>
+							</div>
 							<div class="label-source">
 								<p>小编推荐</p>
 							</div>
 						</div>
 						<div class="mod-info">
 							<div class="info-pic">
-								<img src="../../temp/images/rishiji.png" alt="up主 头像"/>
+								<a class="iconfont icon-add btn-follow"></a>
+								<img src="../../temp/images/rishiji.webp" alt="up主 头像"/>
 							</div>
 							<div class="info-txt">
 								<h3 class="tit">日食记</h3>
@@ -61,157 +71,36 @@
 						</div>
 						<div class="mod-video">
 							<div class="video-main">
-								<video id="video" webkit-playsinline playsinline controls="controls"  preload="auto" poster="http://download.dcloud.net.cn/FastAndroid-mini.jpg" width="100%" height="auto">
-									<source src="http://download.dcloud.net.cn/FastAndroid-mini.m4v" type="video/mp4">
-									<source src="http://download.dcloud.net.cn/FastAndroid-mini.webm" type="video/webm">
-									<source src="http://download.dcloud.net.cn/FastAndroid-mini.ogv" type="video/ogg">
-									<source src="http://download.dcloud.net.cn/FastAndroid-mini.mp4">
-								</video>
+								<!--<video id="video-recommand" webkit-playsinline playsinline controls="controls"  preload="auto" poster="http://i0.hdslb.com/bfs/archive/796f85c2243fe3cd77b37f1b98aa0dd81236a207.jpg" width="100%" height="auto">
+									<source src="http://10.10.81.101/0.mp4" type="audio/mp4">
+								</video>-->
 							</div>
 							<div class="video-info clearfix">
 								<div class="info-tit">
-									<a data-title-type="transparent_native" href="../detail/video-detail.html">【牛肉面】</a>
+									<a data-title-type="transparent_native" href="../detail/video-detail.html">【牛肉面【牛肉面【牛肉面【牛肉面【牛肉面【牛肉面】</a>
 								</div>
-								<div class="info-act">
+								<!--<div class="info-act">
 									<ul class="act-list clearfix">
 										<li class="act-item">
-											<a href="javascript:;">
-												<i class="mui-icon mui-icon-star"></i>
+											<a>
+												<i class="iconfont icon-shoucang1"></i>
 												<p>10w</p>	
 											</a>
 										</li>
 										<li class="act-item">
-											<a href="javascript:;">
-												<i class="mui-icon mui-icon-chatboxes"></i>
+											<a>
+												<i class="iconfont icon-xiaoxi"></i>
 												<p>89</p>	
 											</a>
 										</li>
 										<li class="act-item">
-											<a href="javascript:;">
-												<i class="mui-icon mui-icon-upload"></i>
+											<a>
+												<i class="iconfont icon-fenxiang"></i>
 												<p>2390</p>	
 											</a>
 										</li>
 									</ul>
-								</div>
-								<div class="info-txt">
-									<p><em>小编推荐语：</em>视频超级精彩视频超级精彩视频超级精彩视频超级精彩视频超级精彩视频超级精彩视频超级精彩</p>
-								</div>
-							</div>
-						</div>
-					</li>
-					<li class="card-item">
-						<div class="mod-label">
-							<div class="label-source">
-								<p>小编推荐</p>
-							</div>
-						</div>
-						<div class="mod-info">
-							<div class="info-pic">
-								<img src="../../temp/images/rishiji.png" alt="up主 头像"/>
-							</div>
-							<div class="info-txt">
-								<h3 class="tit">日食记2</h3>
-								<span><em>20w</em>粉丝</span>
-								<span><em>100</em>个视频</span>
-							</div>
-						</div>
-						<div class="mod-video">
-							<div class="video-main">
-								<video id="video" webkit-playsinline playsinline controls="controls"  preload="auto" poster="http://download.dcloud.net.cn/FastAndroid-mini.jpg" width="100%" height="auto">
-									<source src="http://download.dcloud.net.cn/FastAndroid-mini.m4v" type="video/mp4">
-									<source src="http://download.dcloud.net.cn/FastAndroid-mini.webm" type="video/webm">
-									<source src="http://download.dcloud.net.cn/FastAndroid-mini.ogv" type="video/ogg">
-									<source src="http://download.dcloud.net.cn/FastAndroid-mini.mp4">
-								</video>
-							</div>
-							<div class="video-info clearfix">
-								<div class="info-tit">
-									<a href="#">【牛肉面】</a>
-								</div>
-								<div class="info-act">
-									<ul class="act-list clearfix">
-										<li class="act-item">
-											<a href="javascript:;">
-												<i class="mui-icon mui-icon-star"></i>
-												<p>10w</p>	
-											</a>
-										</li>
-										<li class="act-item">
-											<a href="javascript:;">
-												<i class="mui-icon mui-icon-chatboxes"></i>
-												<p>89</p>	
-											</a>
-										</li>
-										<li class="act-item">
-											<a href="javascript:;">
-												<i class="mui-icon mui-icon-upload"></i>
-												<p>2391</p>	
-											</a>
-										</li>
-									</ul>
-								</div>
-								<div class="info-txt">
-									<p><em>小编推荐语：</em>视频超级精彩视频超级精彩视频超级精彩视频超级精彩视频超级精彩视频超级精彩视频超级精彩</p>
-								</div>
-							</div>
-						</div>
-					</li>
-					<li class="card-item">
-						<div class="mod-label">
-							<div class="label-sort">
-								<span>科技</span>
-								<span>美食</span>
-							</div>
-							<div class="label-source">
-								<p>猜你喜欢</p>
-							</div>
-						</div>
-						<div class="mod-info">
-							<div class="info-pic">
-								<img src="../../temp/images/rishiji.png" alt="up主 头像"/>
-							</div>
-							<div class="info-txt">
-								<h3 class="tit">日食记3</h3>
-								<span><em>20w</em>粉丝</span>
-								<span><em>100</em>个视频</span>
-							</div>
-						</div>
-						<div class="mod-video">
-							<div class="video-main">
-								<video id="video" webkit-playsinline playsinline controls="controls"  preload="auto" poster="http://download.dcloud.net.cn/FastAndroid-mini.jpg" width="100%" height="auto">
-									<source src="http://download.dcloud.net.cn/FastAndroid-mini.m4v" type="video/mp4">
-									<source src="http://download.dcloud.net.cn/FastAndroid-mini.webm" type="video/webm">
-									<source src="http://download.dcloud.net.cn/FastAndroid-mini.ogv" type="video/ogg">
-									<source src="http://download.dcloud.net.cn/FastAndroid-mini.mp4">
-								</video>
-							</div>
-							<div class="video-info clearfix">
-								<div class="info-tit">
-									<a href="#">【牛肉面】</a>
-								</div>
-								<div class="info-act">
-									<ul class="act-list clearfix">
-										<li class="act-item">
-											<a href="javascript:;">
-												<i class="mui-icon mui-icon-star"></i>
-												<p>10w</p>	
-											</a>
-										</li>
-										<li class="act-item">
-											<a href="javascript:;">
-												<i class="mui-icon mui-icon-chatboxes"></i>
-												<p>89</p>	
-											</a>
-										</li>
-										<li class="act-item">
-											<a href="javascript:;">
-												<i class="mui-icon mui-icon-upload"></i>
-												<p>2391</p>	
-											</a>
-										</li>
-									</ul>
-								</div>
+								</div>-->
 								<div class="info-txt">
 									<p><em>小编推荐语：</em>视频超级精彩视频超级精彩视频超级精彩视频超级精彩视频超级精彩视频超级精彩视频超级精彩</p>
 								</div>
@@ -233,34 +122,140 @@
 					   };
 			});
 			mui.init({
-				gestureConfig:{
-					swipe:true,
-					drag:false
-				}
+				swipeBack:false //关闭右滑关闭功能
 			});
 			mui.plusReady(function(){
-				mui('#video')[0].addEventListener('webkitbeginfullscreen', function() {
-				    plus.screen.lockOrientation('landscape'); //锁死屏幕方向为横屏
+				//绘制顶部图标
+//				plus.navigator.setStatusBarBackground("#FFFFFF");
+				_self = plus.webview.currentWebview();
+				var titleView = _self.getNavigationbar();
+	//
+				if(!titleView) {
+					titleView = plus.webview.getLaunchWebview().getNavigationbar();
+				}
+	
+//				titleView.drawRect("#cccccc", {
+//					top: "43px",
+//					height:"1px",
+//					left: "0px"
+//				}); //绘制底部边线
+	
+				//开启回弹
+				_self.setStyle({
+					bounce: "vertical",
+					bounceBackground:"#ffffff"
 				});
-				mui('#video')[0].addEventListener('webkitendfullscreen', function() {
-				//  plus.screen.unlockOrientation(); //解除屏幕方向的锁定，但是不一定是竖屏；
-				    plus.screen.lockOrientation('portrait'); //锁死屏幕方向为竖屏
+	
+				//绘制左上角menu图标
+				var bitmap_menu = new plus.nativeObj.Bitmap("menu");
+				bitmap_menu.loadBase64Data("data:image/png;base64,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");
+				titleView.drawBitmap(bitmap_menu, {}, {
+					top: "10px",
+					left: "10px",
+					width: "24px",
+					height: "24px"
 				});
+	
+				var about_left = window.innerWidth - 34;
+				var bitmap = new plus.nativeObj.Bitmap("about");
+				bitmap.loadBase64Data("data:image/png;base64,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");
+				titleView.drawBitmap(bitmap, {}, {
+					top: "10px",
+					left: about_left + "px",
+					width: "24px",
+					height: "24px"
+				});
+	
+				titleView.interceptTouchEvent(true);
+				titleView.addEventListener("click", function(e) {
+					var x = e.clientX;
+					if(x < 44) { //触发menu菜单
+						mui.openWindow({
+							url: "../information/recommend.html",
+							id: "../information/recommend.html",
+							styles: {
+								popGesture: "close",
+								statusbar: {
+									background: "#f7f7f7"
+								}
+							},
+							show: {
+								aniShow: "slide-in-right",
+								duration: 300
+							}
+						});
+					} else if(x > about_left) { //触发关于页面
+						var aniShow = mui.os.plus ? "slide-in-right" : "zoom-fade-out";
+						mui.openWindow({
+							url: "../information/find.html",
+							id: "../information/find.html",
+							styles: {
+								popGesture: "close",
+								statusbar: {
+									background: "#f7f7f7"
+								}
+							},
+							show: {
+								aniShow: aniShow,
+								duration: 300
+							}
+						});
+					}
+				}, false);
+				
+				var userId = localStorage.getItem('userId');
+				console.log(userId);
+				getVideoInfo();
+				
 				
 				var swipeCount = 0;
 				mui(window)[0].addEventListener('swipeup', function(e){
-					swipeCount += 1;
-					mui('.mod-card .card-list')[0].style.transform = 'translateY(-' + (swipeCount * 100) + 'vh)';
+					if(swipeCount < 21) {
+						swipeCount += 1;
+						mui('.mod-card .card-list')[0].style.transform = 'translateY(-' + (swipeCount * 100) + 'vh)';
+					}else {
+						mui.toast('到底了');
+					}
+						
+					
 				});
 				mui(window)[0].addEventListener('swipedown', function(){
 					if(swipeCount){
 						--swipeCount;
 					}else {
-//						alert('到顶部了');
+						mui.toast('到顶了');
 					}
 					mui('.mod-card .card-list')[0].style.transform = 'translateY(-' + (swipeCount * 100) + 'vh)';
 				});
 				
+				mui('.mui-content').on('tap', '.btn-follow', function(){
+					var upper = this.getAttribute("data-upper");
+					console.log(upper, userId);
+					mui.ajax({
+						url: 'http://10.10.81.101:5000/tofollow/',
+						data: {
+							userid: userId,
+							upper: upper
+						},
+						dataType: 'JSON',
+						type: 'post',
+						timeout: 50000,
+						headers: {'Content-Type':'application/json'},
+						success:function(data) {
+							data = JSON.parse(data);
+							console.log(JSON.stringify(data));
+							if(data.followd == 'ok') {
+								mui.toast('关注成功');
+							}else {
+								mui.toast('已经关注过了');
+							}
+						},
+						error:function(xhr,type,errorThrown){
+							console.log(type, errorThrown);
+						}
+					});
+				});
+//				
 				var aniShow = "slide-in-right";
 				mui('.mui-content').on('tap', 'a', function() {
 					var id = this.getAttribute("href");
@@ -305,7 +300,173 @@
 						});
 					}
 				});
-			})
+			});
+			document.getElementsByTagName('body')[0].addEventListener('touchstart', function(e) {e.preventDefault();}, false);
+			
+			window.addEventListener('refreshVideoInfo', getVideoInfo);
+			// ajax
+			function getVideoInfo() {
+				var userId = localStorage.getItem('userId');
+				console.log(userId);
+				var firstRecommend = '<li class="card-item">' + 
+										'<div class="mod-label">' + 
+											'<div class="label-collect">' +
+												'<a class="iconfont icon-shoucang1"></a>' +
+											'</div>' +
+											'<div class="label-source">' +
+												'<p>小编推荐</p></div></div>' +
+										'<div class="mod-info">' + 
+											'<div class="info-pic">' + 
+												'<a class="iconfont icon-add btn-follow" data-upper="87"></a>' + 
+												'<img src="http://10.10.81.101/tangya.jpg" alt="up主 头像"/>' + 
+											'</div>' + 
+											'<div class="info-txt">' + 
+												'<h3 class="tit">躺倒鸭官方号</h3>' + 
+												'<span><em>' + '10w' + '</em>粉丝</span>' + 
+												'<span><em>' + '72' + '</em>个视频</span>' +
+											'</div></div>' + 
+										'<div class="mod-video">' +
+											'<div class="video-main">' +
+												'<video webkit-playsinline playsinline controls="controls"  preload="auto" poster="http://i2.hdslb.com/bfs/archive/5f73c1661d85ba7ff3cfd0b19d19a8afc8e89bdc.jpg" width="100%" height="auto">' + 
+													'<source src="http://10.10.81.101/794.mp4" type="video/mp4">' +
+												'</video>' + 
+											'</div>' +
+										'<div class="video-info clearfix">' +
+											'<div class="info-tit">' + 
+												'<a href="javascript:;">魂斗罗iPhone也能玩了！不过玩后想骂人……</a>' +
+											'</div>' +  
+											'<div class="info-txt">' +
+												'<p>魂斗罗是一代人童年的回忆，现在手机上也可以玩魂斗罗了，时过境迁，当年那份快乐你还记得吗？</p>' + 
+												'<p class="comment"><em>—— 小编推荐</em></p>' +
+											'</div></div></div>' + 
+									'</li>';
+				mui('.card-list')[0].innerHTML = firstRecommend;
+				mui.ajax({
+					url: 'http://10.10.81.101:5000/push/',
+					data: {
+						userid: userId
+					},
+					dataType: 'JSON',
+					type: 'GET',
+					timeout: 50000,
+					headers: {'Content-Type':'application/x-www-form-urlencoded'},
+					success:function(data) {
+						var data_arr = JSON.parse(data).info;
+						console.log(JSON.stringify(data));
+						
+						mui.ajax({
+							url: 'http://10.10.81.101:5000/newstuff/',
+							data: {
+								userid: userId
+							},
+							dataType: 'JSON',
+							type: 'GET',
+							timeout: 50000,
+							headers: {'Content-Type':'application/x-www-form-urlencoded'},
+							success:function(data) {
+								var fresh_data = JSON.parse(data).info;
+								var html = '';
+								var j = 0;
+								for(var i = 0; i < data_arr.length; i++) {
+//									console.log(i/7);
+									if(i%7 == 0  && i != 0){
+										for(var k = 0; k < 2; k++){
+											++j;
+											html += '<li class="card-item">' + 
+														'<div class="mod-label">' + 
+															'<div class="label-collect">' +
+																'<a class="iconfont icon-shoucang1"></a>' +
+															'</div>' +
+															'<div class="label-source">' +
+																'<p>尝尝鲜</p></div></div>' +
+														'<div class="mod-info">' + 
+															'<div class="info-pic">' + 
+																'<a class="iconfont icon-add btn-follow" data-upper="' + fresh_data[j].upper + '"></a>' + 
+																'<img src="http://10.10.81.101/' + fresh_data[j].avater + '" alt="up主 头像"/>' + 
+															'</div>' + 
+															'<div class="info-txt">' + 
+																'<h3 class="tit">' + fresh_data[j].upper + '</h3>' + 
+																'<span><em>' + rd(1,5) + 'w' + '</em>粉丝</span>' + 
+																'<span><em>' + rd(50,100) + '</em>个视频</span>' +
+															'</div></div>' + 
+														'<div class="mod-video">' +
+															'<div class="video-main">' +
+																'<video webkit-playsinline playsinline controls="controls"  preload="auto" poster="http://' + fresh_data[j].pic + '" width="100%" height="auto">' + 
+																	'<source src="http://10.10.81.101/' + fresh_data[j].mov + '" type="video/mp4">' +
+																'</video>' + 
+															'</div>' +
+														'<div class="video-info clearfix">' +
+															'<div class="info-tit">' + 
+																'<a href="javascript:;">' + fresh_data[j].title + '</a>' +
+															'</div>' + 
+															'<div class="info-txt">' +
+																'<p>' + fresh_data[j].comment + '</p>' + 
+																'<p class="comment"><em>—— 精彩评论</em></p>' +
+															'</div></div></div>' + 
+													'</li>';
+										}
+										
+									}else {
+										html += '<li class="card-item">' + 
+												'<div class="mod-label">' + 
+													'<div class="label-collect">' +
+														'<a class="iconfont icon-shoucang1"></a>' +
+													'</div>' +
+													'<div class="label-source">' +
+														'<p>个性推荐</p></div></div>' +
+												'<div class="mod-info">' + 
+													'<div class="info-pic">' + 
+														'<a class="iconfont icon-add btn-follow" data-upper="' + data_arr[i].upper + '"></a>' + 
+														'<img src="http://10.10.81.101/' + data_arr[i].avater + '" alt="up主 头像"/>' + 
+													'</div>' + 
+													'<div class="info-txt">' + 
+														'<h3 class="tit">' + data_arr[i].upper + '</h3>' + 
+														'<span><em>' + rd(1,5) + 'w' + '</em>粉丝</span>' + 
+														'<span><em>' + rd(50,100) + '</em>个视频</span>' +
+													'</div></div>' + 
+												'<div class="mod-video">' +
+													'<div class="video-main">' +
+														'<video webkit-playsinline playsinline controls="controls"  preload="auto" poster="http://' + data_arr[i].pic + '" width="100%" height="auto">' + 
+															'<source src="http://10.10.81.101/' + data_arr[i].mov + '" type="video/mp4">' +
+														'</video>' + 
+													'</div>' +
+												'<div class="video-info clearfix">' +
+													'<div class="info-tit">' + 
+														'<a href="javascript:;">' + data_arr[i].title + '</a>' +
+													'</div>' + 
+													'<div class="info-txt">' +
+														'<p>' + data_arr[i].comment + '</p>' + 
+														'<p class="comment"><em>—— 精彩评论</em></p>' +
+													'</div></div></div>' + 
+											'</li>';
+									}
+									
+								}
+								
+								mui('.card-list')[0].innerHTML += html;
+							},
+							error:function(xhr,type,errorThrown){
+								console.log(type, errorThrown);
+							}
+						});
+						
+//						document.querySelector('.mod-video video').addEventListener('webkitbeginfullscreen', function() {
+//						    plus.screen.lockOrientation('landscape'); //锁死屏幕方向为横屏
+//						});
+//						document.querySelector('.mod-video video').addEventListener('webkitendfullscreen', function() {
+//						  	plus.screen.unlockOrientation(); //解除屏幕方向的锁定，但是不一定是竖屏；
+//						    plus.screen.lockOrientation('portrait'); //锁死屏幕方向为竖屏
+//						});
+					},
+					error:function(xhr,type,errorThrown){
+						console.log(type, errorThrown);
+					}
+				});
+				function rd(n,m){
+				    var c = m-n+1;  
+				    return Math.floor(Math.random() * c + n);
+				}
+			}
 		</script>
 	</body>
 
